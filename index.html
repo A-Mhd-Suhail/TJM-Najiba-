@@ -17,7 +17,7 @@
             <span class="logo">Studies Made Easy</span>
         </div>
         <ul class="nav-menu">
-            <li>🏠 Home</li>
+            <li onclick="window.location.href='index.html'">🏠 Home</li>
             <li>ℹ️ About</li>
             <li>📞 Contact</li>
         </ul>
@@ -50,7 +50,6 @@
                     <span class="hero-stat-label">Success Rate ✨</span>
                 </div>
             </div>
-            <!-- Explore link that scrolls to landmark -->
             <div class="hero-explore">
                 <a href="#landmark-section" class="explore-link">
                     <span class="explore-text">✨ Explore our website</span>
@@ -65,36 +64,36 @@
         <h3 class="landmark-title">🎯 Exam Landmark</h3>
         <p class="landmark-sub">Your gateway to India's top competitive &amp; board exams</p>
         <div class="landmark-grid">
-            <div class="landmark-card">
+            <a href="cbse.html" class="landmark-card">
                 <span class="landmark-icon">🏛️</span>
                 <h4>CBSE</h4>
                 <p>Central Board</p>
-                <span class="landmark-tag">1 to 12</span>
-            </div>
-            <div class="landmark-card">
+                <span class="landmark-tag">1st to 12th</span>
+            </a>
+            <a href="stateboards.html" class="landmark-card">
                 <span class="landmark-icon">🗺️</span>
                 <h4>State Boards</h4>
                 <p>All states</p>
-                <span class="landmark-tag">1 to 12</span>
-            </div>
-            <div class="landmark-card">
+                <span class="landmark-tag">1st to 12th</span>
+            </a>
+            <a href="icse.html" class="landmark-card">
                 <span class="landmark-icon">📘</span>
                 <h4>ICSE</h4>
                 <p>Indian Certificate</p>
-                <span class="landmark-tag">1 to 12</span>
-            </div>
-            <div class="landmark-card">
+                <span class="landmark-tag">1st to 12th</span>
+            </a>
+            <a href="jee.html" class="landmark-card">
                 <span class="landmark-icon">⚡</span>
                 <h4>JEE</h4>
                 <p>IIT / NIT</p>
                 <span class="landmark-tag">Main + Advanced</span>
-            </div>
-            <div class="landmark-card">
+            </a>
+            <a href="neet.html" class="landmark-card">
                 <span class="landmark-icon">🩺</span>
                 <h4>NEET</h4>
                 <p>Medical entrance</p>
                 <span class="landmark-tag">UG · PG</span>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -166,7 +165,7 @@
     </section>
 
     <div class="footer-links">
-        <span>🏠 Home</span>
+        <span onclick="window.location.href='index.html'">🏠 Home</span>
         <span>•</span>
         <span>ℹ️ About</span>
         <span>•</span>
@@ -177,13 +176,28 @@
 
     <script>
         // ===== SMOOTH SCROLL FOR EXPLORE LINK =====
-        document.querySelector('.explore-link').addEventListener('click', function(e) {
+        document.querySelector('.explore-link')?.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector('#landmark-section');
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+        });
+
+        // ===== CHECK FOR HASH ON LOAD =====
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#landmark-section') {
+                setTimeout(function() {
+                    const target = document.querySelector('#landmark-section');
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 300);
+            }
         });
 
         // ===== CANVAS ANIMATION: SHOOTING STARS + ORBS =====
@@ -199,7 +213,6 @@
             window.addEventListener('resize', resize);
             resize();
 
-            // Floating orbs
             const orbs = Array.from({ length: 14 }, () => ({
                 x: Math.random() * W,
                 y: Math.random() * H,
@@ -209,7 +222,6 @@
                 hue: 200 + Math.random() * 40
             }));
 
-            // Background stars
             const stars = Array.from({ length: 180 }, () => ({
                 x: Math.random() * W,
                 y: Math.random() * H,
@@ -218,7 +230,6 @@
                 sp: 0.008 + Math.random() * 0.025
             }));
 
-            // Shooting stars
             const shooters = Array.from({ length: 24 }, () => ({
                 x: Math.random() * W,
                 y: Math.random() * H * 0.35,
@@ -240,7 +251,6 @@
             function draw() {
                 ctx.clearRect(0, 0, W, H);
 
-                // Deep space gradient
                 const grad = ctx.createRadialGradient(W * 0.3, H * 0.3, 0, W * 0.3, H * 0.3, W * 0.9);
                 grad.addColorStop(0, '#0a1a3a');
                 grad.addColorStop(0.6, '#050c20');
@@ -248,7 +258,6 @@
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, W, H);
 
-                // Draw orbs
                 orbs.forEach(o => {
                     o.x += o.vx;
                     o.y += o.vy;
@@ -274,7 +283,6 @@
                     ctx.stroke();
                 });
 
-                // Draw stars
                 stars.forEach(s => {
                     s.t += s.sp;
                     const alpha = 0.2 + 0.8 * Math.abs(Math.sin(s.t));
@@ -284,7 +292,6 @@
                     ctx.fill();
                 });
 
-                // Draw shooting stars
                 shooters.forEach(s => {
                     if (!s.active) {
                         s.delay--;
