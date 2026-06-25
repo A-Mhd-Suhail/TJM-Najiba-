@@ -347,6 +347,9 @@ canvas {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
 }
 .landmark-card::before {
     content: '';
@@ -565,6 +568,56 @@ canvas {
     color: rgba(150, 180, 220, 0.2);
 }
 .footer-links span:hover {
-    color: rgba(200, 225, 255,)
+    color: rgba(200, 225, 255, 0.5);
+    text-shadow: 0 0 20px rgba(100, 180, 255, 0.1);
+}
 
+/* ----- RESPONSIVE ----- */
+@media (max-width: 820px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 14px 22px;
+        border-radius: 40px;
+        margin: 12px 16px;
+    }
+    .logo { font-size: 22px; }
+    .nav-menu { gap: 4px; flex-wrap: wrap; justify-content: center; }
+    .nav-menu li { font-size: 15px; padding: 6px 14px; }
+    .landmark-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .contact-box { padding: 32px 24px 28px; }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 40px 20px;
+        border-radius: 30px;
+    }
+    .hero-title {
+        font-size: 34px;
+    }
+    .hero-stats {
+        flex-direction: column;
+        gap: 18px;
+        border-radius: 24px;
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .landmark-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+    .hero-title { font-size: 30px; }
+    .hero-description { font-size: 15px; }
+    .all-boards-inline { font-size: 13px; }
+    .landmark-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .landmark-card { padding: 20px 8px; }
+    .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .feature-card { padding: 20px 12px; }
+    .contact-item { flex-wrap: wrap; justify-content: center; gap: 4px; }
+    .contact-item-value { font-size: 14px; }
 }
