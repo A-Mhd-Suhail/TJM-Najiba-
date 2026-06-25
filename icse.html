@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ICSE · Studies Made Easy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a7cf7'/%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='%23ffffff'%3ES%3C/text%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='none' stroke='%23a0c4ff' stroke-width='2' opacity='0.5'%3ES%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .exam-welcome {
+            position: relative;
+            z-index: 1;
+            max-width: 920px;
+            margin: 40px auto 20px;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .exam-welcome-box {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 55px 40px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            animation: riseUp 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .exam-welcome-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(189, 178, 255, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .exam-welcome-icon {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .exam-welcome-title {
+            font-size: 44px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        .exam-welcome-title .highlight-exam {
+            background: linear-gradient(135deg, #ffc6ff, #bdb2ff, #9bf6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .exam-welcome-sub {
+            font-size: 20px;
+            color: rgba(200, 222, 255, 0.6);
+            line-height: 1.7;
+        }
+        .exam-welcome-desc {
+            font-size: 16px;
+            color: rgba(180, 210, 255, 0.5);
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            color: rgba(200, 222, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .back-home:hover {
+            background: rgba(74, 124, 247, 0.15);
+            border-color: rgba(74, 124, 247, 0.3);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .exam-resources {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 20px auto 30px;
+            padding: 0 24px;
+        }
+        .exam-resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .exam-resource-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 28px 18px 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .exam-resource-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .exam-resource-card:hover::before {
+            opacity: 1;
+        }
+        .exam-resource-card:hover {
+            background: rgba(74, 124, 247, 0.08);
+            border-color: rgba(74, 124, 247, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(74, 124, 247, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .exam-resource-icon {
+            font-size: 42px;
+            display: block;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 20px rgba(100, 180, 255, 0.15));
+        }
+        .exam-resource-card h4 {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        .exam-resource-card p {
+            color: rgba(180, 210, 255, 0.5);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .exam-resource-card .resource-badge {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(74, 124, 247, 0.12);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(160, 200, 255, 0.6);
+            border: 1px solid rgba(74, 124, 247, 0.08);
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 768px) {
+            .exam-welcome-title { font-size: 32px; }
+            .exam-resources-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 520px) {
+            .exam-welcome-title { font-size: 26px; }
+            .exam-welcome-box { padding: 30px 20px; }
+            .exam-resources-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .exam-resource-card { padding: 20px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <header class="header">
+        <div class="logo-wrapper">
+            <span class="logo-icon">📖</span>
+            <span class="logo">Studies Made Easy</span>
+        </div>
+        <ul class="nav-menu">
+            <li onclick="window.location.href='index.html'">🏠 Home</li>
+            <li>ℹ️ About</li>
+            <li>📞 Contact</li>
+        </ul>
+    </header>
+
+    <section class="exam-welcome">
+        <div class="exam-welcome-box">
+            <span class="exam-welcome-icon">📘</span>
+            <h1 class="exam-welcome-title">
+                Welcome to <span class="highlight-exam">ICSE</span> Learning Portal
+            </h1>
+            <p class="exam-welcome-sub">🎓 Your complete ICSE study resource hub</p>
+            <p class="exam-welcome-desc">
+                Get access to curated notes, practice papers, and expert guidance for ICSE Class 1st to 12th.
+            </p>
+            <a href="index.html#landmark-section" class="back-home">🏠 Back to Home</a>
+        </div>
+    </section>
+
+    <section class="exam-resources">
+        <div class="exam-resources-grid">
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">🎥</span>
+                <h4>Quality Video Lectures</h4>
+                <p>Expert-led video lessons for every topic</p>
+                <span class="resource-badge">📺 Watch Now</span>
+            </div>
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">📋</span>
+                <h4>ICSE Syllabus</h4>
+                <p>Complete curriculum for all classes</p>
+                <span class="resource-badge">📚 View Syllabus</span>
+            </div>
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">📝</span>
+                <h4>Notes</h4>
+                <p>Well-structured notes for quick revision</p>
+                <span class="resource-badge">✍️ Download</span>
+            </div>
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">📄</span>
+                <h4>Sample Papers &amp; Worksheets</h4>
+                <p>Practice with latest pattern papers</p>
+                <span class="resource-badge">📥 Get Now</span>
+            </div>
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">❓</span>
+                <h4>PYQs</h4>
+                <p>Previous year questions with solutions</p>
+                <span class="resource-badge">📖 Solve Now</span>
+            </div>
+            <div class="exam-resource-card">
+                <span class="exam-resource-icon">🤖</span>
+                <h4>Doubt? Top AI Are Here!</h4>
+                <p>24/7 AI-powered doubt solving assistance</p>
+                <span class="resource-badge">💬 Ask AI</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', function() {
+            const canvas = document.getElementById('bg');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const orbs = Array.from({ length: 14 }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                r: 30 + Math.random() * 90,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                hue: 200 + Math.random() * 40
+            }));
+            const stars = Array.from({ length: 180 }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                r: 0.3 + Math.random() * 1.4,
+                t: Math.random() * Math.PI * 2,
+                sp: 0.008 + Math.random() * 0.025
+            }));
+            const shooters = Array.from({ length: 24 }, () => ({
+                x: Math.random() * W, y: Math.random() * H * 0.35,
+                len: 70 + Math.random() * 130,
+                speed: 6 + Math.random() * 14,
+                op: 0, active: false,
+                delay: Math.floor(Math.random() * 70)
+            }));
+
+            function resetShooter(s) {
+                s.x = Math.random() * W * 0.85;
+                s.y = Math.random() * H * 0.25;
+                s.op = 1;
+                s.active = true;
+                s.delay = 60 + Math.floor(Math.random() * 140);
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                const grad = ctx.createRadialGradient(W * 0.3, H * 0.3, 0, W * 0.3, H * 0.3, W * 0.9);
+                grad.addColorStop(0, '#0a1a3a');
+                grad.addColorStop(0.6, '#050c20');
+                grad.addColorStop(1, '#00040a');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+
+                orbs.forEach(o => {
+                    o.x += o.vx; o.y += o.vy;
+                    if (o.x < 0 || o.x > W) o.vx *= -1;
+                    if (o.y < 0 || o.y > H) o.vy *= -1;
+                    const g = ctx.createRadialGradient(o.x - o.r * 0.2, o.y - o.r * 0.2, 0, o.x, o.y, o.r);
+                    g.addColorStop(0, `hsla(${o.hue}, 85%, 80%, 0.25)`);
+                    g.addColorStop(0.5, `hsla(${o.hue}, 75%, 55%, 0.10)`);
+                    g.addColorStop(1, `hsla(${o.hue}, 70%, 30%, 0)`);
+                    ctx.beginPath();
+                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.fillStyle = g;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = `hsla(${o.hue}, 80%, 75%, 0.08)`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                });
+
+                stars.forEach(s => {
+                    s.t += s.sp;
+                    const alpha = 0.2 + 0.8 * Math.abs(Math.sin(s.t));
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(200, 225, 255, ${alpha})`;
+                    ctx.fill();
+                });
+
+                shooters.forEach(s => {
+                    if (!s.active) {
+                        s.delay--;
+                        if (s.delay <= 0) resetShooter(s);
+                        return;
+                    }
+                    s.x += s.speed;
+                    s.y += s.speed * 0.4;
+                    s.op -= 0.012;
+                    if (s.op <= 0) {
+                        s.active = false;
+                        s.delay = 60 + Math.floor(Math.random() * 140);
+                        return;
+                    }
+                    const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.4);
+                    grad.addColorStop(0, `rgba(180, 220, 255, ${s.op})`);
+                    grad.addColorStop(0.4, `rgba(120, 180, 255, ${s.op * 0.5})`);
+                    grad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.beginPath();
+                    ctx.moveTo(s.x, s.y);
+                    ctx.lineTo(s.x - s.len, s.y - s.len * 0.4);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 2.0;
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, 2.8, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(240, 248, 255, ${s.op})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        });
+    </script>
+</body>
+</html>
