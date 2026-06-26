@@ -108,6 +108,9 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
         }
         .exam-resource-card::before {
             content: '';
@@ -183,6 +186,7 @@
         </div>
         <ul class="nav-menu">
             <li onclick="window.location.href='index.html'">🏠 Home</li>
+            <li onclick="window.location.href='resources.html'">📚 Resources</li>
             <li>ℹ️ About</li>
             <li>📞 Contact</li>
         </ul>
@@ -204,12 +208,12 @@
 
     <section class="exam-resources">
         <div class="exam-resources-grid">
-            <div class="exam-resource-card">
+            <a href="resources.html" class="exam-resource-card">
                 <span class="exam-resource-icon">🎥</span>
                 <h4>Quality Video Lectures</h4>
                 <p>Expert-led video lessons for every topic</p>
                 <span class="resource-badge">📺 Watch Now</span>
-            </div>
+            </a>
             <div class="exam-resource-card">
                 <span class="exam-resource-icon">📋</span>
                 <h4>State Board Syllabus</h4>
