@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>✨ Resource Library · Studies Made Easy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a7cf7'/%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='%23ffffff'%3ES%3C/text%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='none' stroke='%23a0c4ff' stroke-width='2' opacity='0.5'%3ES%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ===== RESOURCE LIBRARY STYLES ===== */
+        .resource-library {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 20px auto 30px;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ROW ===== */
+        .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: flex-start;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(200, 222, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            background: rgba(74, 124, 247, 0.12);
+            border-color: rgba(74, 124, 247, 0.25);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74, 124, 247, 0.1);
+        }
+
+        .btn-action.back {
+            background: rgba(255, 0, 0, 0.04);
+            border-color: rgba(255, 0, 0, 0.08);
+            color: rgba(255, 100, 100, 0.6);
+        }
+
+        .btn-action.back:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.2);
+            color: #ff6b6b;
+        }
+
+        .btn-action.home {
+            background: rgba(155, 246, 255, 0.04);
+            border-color: rgba(155, 246, 255, 0.08);
+            color: rgba(155, 246, 255, 0.6);
+        }
+
+        .btn-action.home:hover {
+            background: rgba(155, 246, 255, 0.1);
+            border-color: rgba(155, 246, 255, 0.2);
+            color: #9bf6ff;
+        }
+
+        /* ===== SEARCH + CONFIRM BLOCK ===== */
+        .search-confirm-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 12px;
+            padding: 18px 22px;
+            border-radius: 24px;
+            background: rgba(15, 20, 50, 0.4);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(155, 246, 255, 0.06);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 24px;
+            transition: all 0.4s ease;
+        }
+
+        .search-confirm-block:hover {
+            border-color: rgba(155, 246, 255, 0.12);
+            box-shadow: 0 8px 60px rgba(155, 246, 255, 0.04);
+        }
+
+        .search-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .search-group label {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(180, 210, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search-group select {
+            padding: 10px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            color: #e8eeff;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Segoe UI', 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search-group select option {
+            background: #0a1a3a;
+            color: #e8eeff;
+        }
+
+        .search-group select:hover {
+            border-color: rgba(155, 246, 255, 0.15);
+        }
+
+        .search-group select:focus {
+            border-color: rgba(155, 246, 255, 0.35);
+            box-shadow: 0 0 40px rgba(155, 246, 255, 0.05), inset 0 0 20px rgba(155, 246, 255, 0.02);
+        }
+
+        .btn-confirm {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 28px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, rgba(155, 246, 255, 0.12), rgba(189, 178, 255, 0.12));
+            border: 1px solid rgba(155, 246, 255, 0.15);
+            color: #9bf6ff;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            white-space: nowrap;
+            align-self: flex-end;
+        }
+
+        .btn-confirm:hover {
+            background: linear-gradient(135deg, rgba(155, 246, 255, 0.2), rgba(189, 178, 255, 0.2));
+            border-color: rgba(155, 246, 255, 0.35);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(155, 246, 255, 0.15);
+        }
+
+        .btn-confirm .arrow {
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .btn-confirm:hover .arrow {
+            transform: translateX(6px);
+        }
+
+        /* ===== HEADER ===== */
+        .library-header {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .library-title {
+            font-size: 48px;
+            font-weight: 900;
+            font-family: 'Poppins', 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffc6ff, #bdb2ff, #9bf6ff, #ffc6ff);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 4s linear infinite;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        @keyframes titleShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        .library-title .sparkle {
+            display: inline-block;
+            animation: sparkleSpin 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkleSpin {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(20deg); }
+        }
+
+        .library-subtitle {
+            color: rgba(180, 210, 255, 0.4);
+            font-size: 18px;
+            font-weight: 300;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .library-subtitle .highlight-sub {
+            background: linear-gradient(90deg, #ffc6ff, #bdb2ff, #9bf6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            animation: subGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes subGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(155, 246, 255, 0.1)); }
+            50% { filter: drop-shadow(0 0 30px rgba(155, 246, 255, 0.2)); }
+        }
+
+        /* ===== HEART TOUCHING MESSAGE BLOCK - GLOWING ===== */
+        .heart-message {
+            margin: 20px auto 30px;
+            padding: 22px 30px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.04), 
+                rgba(255, 100, 200, 0.04), 
+                rgba(155, 246, 255, 0.04)
+            );
+            border: 1.5px solid rgba(255, 215, 0, 0.08);
+            text-align: center;
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.02),
+                inset 0 0 40px rgba(255, 215, 0, 0.02);
+            animation: heartPulse 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.03), transparent 60%);
+            animation: heartShine 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heartShine {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; }
+        }
+
+        @keyframes heartPulse {
+            0%, 100% {
+                border-color: rgba(255, 215, 0, 0.08);
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.02);
+            }
+            50% {
+                border-color: rgba(255, 215, 0, 0.2);
+                box-shadow: 
+                    0 0 60px rgba(255, 215, 0, 0.06),
+                    0 0 100px rgba(255, 100, 200, 0.04);
+            }
+        }
+
+        .heart-message .heart-icon {
+            font-size: 32px;
+            display: inline-block;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .heart-message .msg-text {
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Poppins', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(90deg, #ffd700, #ff6b9d, #9bf6ff, #ffd700);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: msgShine 4s linear infinite;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        @keyframes msgShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        .heart-message .msg-sub {
+            display: block;
+            font-size: 14px;
+            color: rgba(180, 210, 255, 0.3);
+            font-weight: 300;
+            margin-top: 4px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .heart-message .glow-dots {
+            display: inline-block;
+            animation: dotGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes dotGlow {
+            0%, 100% { opacity: 0.3; text-shadow: 0 0 10px rgba(255, 215, 0, 0); }
+            50% { opacity: 1; text-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+        }
+
+        /* ===== RESOURCE CARDS - GLOWING & DARK ===== */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: rgba(15, 20, 50, 0.4);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 28px;
+            padding: 26px 24px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, 
+                rgba(155, 246, 255, 0.05), 
+                rgba(189, 178, 255, 0.05), 
+                rgba(255, 198, 255, 0.05),
+                rgba(155, 246, 255, 0.05)
+            );
+            background-size: 300% 300%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .resource-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(155, 246, 255, 0.03), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s;
+            pointer-events: none;
+        }
+
+        .resource-card:hover::after {
+            opacity: 1;
+        }
+
+        .resource-card:hover {
+            background: rgba(20, 25, 60, 0.6);
+            border-color: rgba(155, 246, 255, 0.12);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                0 20px 80px rgba(74, 124, 247, 0.08),
+                0 0 60px rgba(155, 246, 255, 0.03);
+        }
+
+        .resource-breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 10px;
+            margin-bottom: 12px;
+        }
+
+        .resource-breadcrumb span {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(180, 210, 255, 0.5);
+            font-weight: 600;
+            font-size: 11px;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .resource-breadcrumb .board-tag {
+            background: rgba(74, 124, 247, 0.12);
+            border-color: rgba(74, 124, 247, 0.08);
+            color: #7fb3ff;
+        }
+
+        .resource-breadcrumb .class-tag {
+            background: rgba(255, 198, 255, 0.08);
+            border-color: rgba(255, 198, 255, 0.08);
+            color: #ffc6ff;
+        }
+
+        .resource-breadcrumb .subject-tag {
+            background: rgba(155, 246, 255, 0.08);
+            border-color: rgba(155, 246, 255, 0.08);
+            color: #9bf6ff;
+        }
+
+        .resource-breadcrumb .lang-tag {
+            background: rgba(255, 215, 0, 0.06);
+            border-color: rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+        }
+
+        .resource-breadcrumb .channel-tag {
+            background: rgba(255, 100, 200, 0.08);
+            border-color: rgba(255, 100, 200, 0.08);
+            color: #ff6b9d;
+        }
+
+        .resource-card h4 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            margin-bottom: 3px;
+            letter-spacing: -0.3px;
+        }
+
+        .resource-card .chapter-name {
+            color: rgba(180, 210, 255, 0.4);
+            font-size: 14px;
+            font-weight: 400;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .resource-card .chapter-name .chapter-icon {
+            margin-right: 4px;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            letter-spacing: 0.3px;
+        }
+
+        .resource-link.youtube {
+            background: rgba(255, 0, 0, 0.06);
+            border: 1px solid rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+        }
+
+        .resource-link.youtube:hover {
+            background: rgba(255, 0, 0, 0.12);
+            border-color: rgba(255, 0, 0, 0.25);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.1);
+        }
+
+        .resource-link.pdf {
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+
+        .resource-link.pdf:hover {
+            background: rgba(255, 215, 0, 0.12);
+            border-color: rgba(255, 215, 0, 0.25);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .resource-link.notes {
+            background: rgba(155, 246, 255, 0.06);
+            border: 1px solid rgba(155, 246, 255, 0.1);
+            color: #9bf6ff;
+        }
+
+        .resource-link.notes:hover {
+            background: rgba(155, 246, 255, 0.12);
+            border-color: rgba(155, 246, 255, 0.25);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(155, 246, 255, 0.1);
+        }
+
+        .resource-link.sample {
+            background: rgba(189, 178, 255, 0.06);
+            border: 1px solid rgba(189, 178, 255, 0.1);
+            color: #bdb2ff;
+        }
+
+        .resource-link.sample:hover {
+            background: rgba(189, 178, 255, 0.12);
+            border-color: rgba(189, 178, 255, 0.25);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(189, 178, 255, 0.1);
+        }
+
+        .resource-glow-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(155, 246, 255, 0.05);
+            border: 1px solid rgba(155, 246, 255, 0.04);
+            color: rgba(155, 246, 255, 0.2);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ===== NO RESULTS ===== */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(180, 210, 255, 0.3);
+        }
+
+        .no-results .big-icon {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 16px;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .no-results h4 {
+            color: rgba(180, 210, 255, 0.5);
+            font-size: 22px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .no-results p {
+            font-size: 14px;
+            margin-top: 4px;
+            font-family: 'Poppins', sans-serif;
+            color: rgba(180, 210, 255, 0.2);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .library-title { font-size: 32px; }
+            .search-confirm-block { flex-direction: column; align-items: stretch; padding: 16px 18px; }
+            .search-group { min-width: 100%; }
+            .resource-grid { grid-template-columns: 1fr; }
+            .resource-card { padding: 20px 18px; }
+            .buttons-row { justify-content: center; }
+            .btn-action { font-size: 13px; padding: 8px 18px; }
+            .btn-confirm { width: 100%; justify-content: center; }
+            .heart-message { padding: 16px 20px; }
+            .heart-message .msg-text { font-size: 16px; }
+        }
+
+        @media (max-width: 520px) {
+            .library-title { font-size: 26px; }
+            .library-subtitle { font-size: 14px; }
+            .resource-breadcrumb span { font-size: 10px; padding: 2px 10px; }
+            .resource-card h4 { font-size: 17px; }
+            .resource-link { font-size: 12px; padding: 6px 14px; }
+            .search-group select { padding: 8px 12px; font-size: 13px; }
+            .heart-message .msg-text { font-size: 14px; }
+            .heart-message .heart-icon { font-size: 24px; }
+            .btn-confirm { font-size: 13px; padding: 8px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <header class="header">
+        <div class="logo-wrapper">
+            <span class="logo-icon">📖</span>
+            <div class="logo-group">
+                <span class="logo">Studies Made Easy</span>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li onclick="window.location.href='index.html'">🏠 Home</li>
+            <li>ℹ️ About</li>
+            <li>📞 Contact</li>
+        </ul>
+    </header>
+
+    <!-- ===== CEO BLOCK ===== -->
+    <div class="ceo-wrapper">
+        <div class="ceo-container">
+            <div class="ceo-shine"></div>
+            <div class="ceo-content">
+                <span class="ceo-crown">👑</span>
+                <div class="ceo-text-group">
+                    <span class="ceo-label">✦ FOUNDER & CEO ✦</span>
+                    <span class="ceo-name">T.J.M Najiba</span>
+                </div>
+                <span class="ceo-sparkle">✨</span>
+            </div>
+            <div class="ceo-glow-ring"></div>
+        </div>
+    </div>
+
+    <!-- ===== RESOURCE LIBRARY ===== -->
+    <section class="resource-library">
+        <!-- ===== 3 BUTTONS ROW ===== -->
+        <div class="buttons-row">
+            <button class="btn-action back" onclick="history.back()">
+                ← Go Back
+            </button>
+            <button class="btn-action home" onclick="window.location.href='index.html'">
+                🏠 Go to Home
+            </button>
+            <button class="btn-action" onclick="window.location.href='index.html#landmark-section'">
+                🔄 Change Portal
+            </button>
+        </div>
+
+        <!-- ===== SEARCH + CONFIRM BLOCK (Only Language, Class, Subject, Channel) ===== -->
+        <div class="search-confirm-block">
+            <div class="search-group">
+                <label>🌍 Language</label>
+                <select id="filterLanguage">
+                    <option value="all">All Languages</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="tamil">Tamil</option>
+                    <option value="telugu">Telugu</option>
+                </select>
+            </div>
+
+            <div class="search-group">
+                <label>📖 Class</label>
+                <select id="filterClass">
+                    <option value="all">All Classes</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
+            </div>
+
+            <div class="search-group">
+                <label>📘 Subject</label>
+                <select id="filterSubject">
+                    <option value="all">All Subjects</option>
+                    <option value="math">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="biology">Biology</option>
+                    <option value="english">English</option>
+                    <option value="computers">Computer Science</option>
+                </select>
+            </div>
+
+            <div class="search-group">
+                <label>📺 Channel</label>
+                <select id="filterChannel">
+                    <option value="all">All Channels</option>
+                    <option value="vedantu">Vedantu</option>
+                    <option value="physicswallah">Physics Wallah</option>
+                    <option value="byjus">BYJU'S</option>
+                    <option value="unacademy">Unacademy</option>
+                    <option value="magnetbrains">Magnet Brains</option>
+                    <option value="learnohub">Learnohub</option>
+                    <option value="khanacademy">Khan Academy</option>
+                </select>
+            </div>
+
+            <div class="search-group">
+                <label>📂 Chapter Name</label>
+                <input type="text" id="filterChapter" placeholder="Type chapter name..." style="padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.03); color: #e8eeff; font-size: 14px; font-weight: 500; font-family: 'Segoe UI', 'Poppins', sans-serif; transition: all 0.3s ease; outline: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); width: 100%;" placeholder="Type chapter name..." />
+            </div>
+
+            <button class="btn-confirm" onclick="filterResources()">
+                🔍 Take Me There <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <div class="library-header">
+            <h1 class="library-title">
+                <span class="sparkle">✨</span> Study Resource Library <span class="sparkle">✨</span>
+            </h1>
+            <p class="library-subtitle">
+                Find the perfect study material — curated just for you by 
+                <span class="highlight-sub">T.J.M Najiba</span> 💕
+            </p>
+        </div>
+
+        <!-- ===== HEART TOUCHING MESSAGE BLOCK ===== -->
+        <div class="heart-message">
+            <span class="heart-icon">💖</span>
+            <span class="msg-text">
+                Every resource here is made with love, just for you 
+                <span class="glow-dots">✦</span>
+            </span>
+            <span class="msg-sub">— The ultimate place to find the perfect study material 💫</span>
+        </div>
+
+        <!-- ===== RESOURCE CARDS ===== -->
+        <div id="resourceContainer" class="resource-grid">
+            <!-- Resources will be rendered by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ===== FOOTER - Darker ===== -->
+    <div class="footer-links" style="border-top: 1px solid rgba(255, 255, 255, 0.02); padding-top: 20px;">
+        <span onclick="window.location.href='index.html'" style="color: rgba(150, 180, 220, 0.15);">🏠 Home</span>
+        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
+        <span style="color: rgba(150, 180, 220, 0.15);">ℹ️ About</span>
+        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
+        <span style="color: rgba(150, 180, 220, 0.15);">📞 Contact</span>
+        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
+        <span style="color: rgba(150, 180, 220, 0.12);">📧 xyz@gmail.com</span>
+        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
+        <span style="color: rgba(150, 180, 220, 0.1);">📱 +91 12345 67890</span>
+    </div>
+
+    <script>
+        // ===== RESOURCE DATA =====
+        const resources = [
+            // ===== CBSE - Class 10 - Mathematics =====
+            {
+                language: 'english',
+                channel: 'physicswallah',
+                class: '10',
+                subject: 'math',
+                chapter: 'Quadratic Equations',
+                title: 'Quadratic Equations - Full Chapter',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example1' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+            {
+                language: 'english',
+                channel: 'vedantu',
+                class: '10',
+                subject: 'math',
+                chapter: 'Trigonometry',
+                title: 'Trigonometry - Complete Guide',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example2' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
+                ]
+            },
+            {
+                language: 'hindi',
+                channel: 'byjus',
+                class: '10',
+                subject: 'math',
+                chapter: 'Real Numbers',
+                title: 'Real Numbers - Full Chapter',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example3' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+
+            // ===== CBSE - Class 12 - Physics =====
+            {
+                language: 'english',
+                channel: 'unacademy',
+                class: '12',
+                subject: 'physics',
+                chapter: 'Electrostatics',
+                title: 'Electrostatics - Complete Guide',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example4' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+            {
+                language: 'english',
+                channel: 'magnetbrains',
+                class: '12',
+                subject: 'physics',
+                chapter: 'Magnetism',
+                title: 'Magnetism - Full Chapter',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example5' },
+                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
+                ]
+            },
+
+            // ===== ICSE - Class 10 - Chemistry =====
+            {
+                language: 'english',
+                channel: 'learnohub',
+                class: '10',
+                subject: 'chemistry',
+                chapter: 'Chemical Bonding',
+                title: 'Chemical Bonding - Complete Guide',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example6' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+            {
+                language: 'english',
+                channel: 'khanacademy',
+                class: '10',
+                subject: 'chemistry',
+                chapter: 'Acids Bases & Salts',
+                title: 'Acids, Bases & Salts - Full Chapter',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example7' },
+                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
+                ]
+            },
+
+            // ===== JEE - Class 11 - Physics =====
+            {
+                language: 'english',
+                channel: 'physicswallah',
+                class: '11',
+                subject: 'physics',
+                chapter: 'Kinematics',
+                title: 'Kinematics - JEE Level',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example8' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+            {
+                language: 'english',
+                channel: 'unacademy',
+                class: '12',
+                subject: 'physics',
+                chapter: 'Optics',
+                title: 'Optics - JEE Advanced Level',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example9' },
+                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
+                ]
+            },
+
+            // ===== NEET - Class 12 - Biology =====
+            {
+                language: 'english',
+                channel: 'byjus',
+                class: '12',
+                subject: 'biology',
+                chapter: 'Genetics',
+                title: 'Genetics - NEET Level',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example10' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+            {
+                language: 'english',
+                channel: 'vedantu',
+                class: '12',
+                subject: 'biology',
+                chapter: 'Ecology',
+                title: 'Ecology - Full Chapter',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example11' },
+                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
+                ]
+            },
+
+            // ===== State Boards - Class 10 - Mathematics =====
+            {
+                language: 'tamil',
+                channel: 'magnetbrains',
+                class: '10',
+                subject: 'math',
+                chapter: 'Algebra',
+                title: 'Algebra - State Board Tamil Medium',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example12' },
+                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
+                ]
+            },
+            {
+                language: 'telugu',
+                channel: 'learnohub',
+                class: '10',
+                subject: 'math',
+                chapter: 'Geometry',
+                title: 'Geometry - State Board Telugu Medium',
+                links: [
+                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example13' },
+                    { type: 'notes', label: '📝 Notes', url: '#' },
+                ]
+            },
+        ];
+
+        // ===== RENDER RESOURCES =====
+        function renderResources(data) {
+            const container = document.getElementById('resourceContainer');
+            
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <span class="big-icon">🔍</span>
+                        <h4>No resources found</h4>
+                        <p>Try adjusting your filters or search for something else ✨</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = data.map((res, index) => {
+                const subjectLabels = {
+                    math: 'Mathematics',
+                    physics: 'Physics',
+                    chemistry: 'Chemistry',
+                    biology: 'Biology',
+                    english: 'English',
+                    computers: 'Computer Science'
+                };
+
+                const channelLabels = {
+                    vedantu: 'Vedantu',
+                    physicswallah: 'Physics Wallah',
+                    byjus: "BYJU'S",
+                    unacademy: 'Unacademy',
+                    magnetbrains: 'Magnet Brains',
+                    learnohub: 'Learnohub',
+                    khanacademy: 'Khan Academy'
+                };
+
+                const linkClasses = {
+                    youtube: 'youtube',
+                    pdf: 'pdf',
+                    notes: 'notes',
+                    sample: 'sample'
+                };
+
+                return `
+                    <div class="resource-card">
+                        <span class="resource-glow-badge">✦ #${index + 1}</span>
+                        <div class="resource-breadcrumb">
+                            <span class="board-tag">${res.board ? res.board.toUpperCase() : 'General'}</span>
+                            <span class="class-tag">Class ${res.class}</span>
+                            <span class="subject-tag">${subjectLabels[res.subject] || res.subject}</span>
+                            <span class="lang-tag">🌍 ${res.language.charAt(0).toUpperCase() + res.language.slice(1)}</span>
+                            <span class="channel-tag">📺 ${channelLabels[res.channel] || res.channel}</span>
+                        </div>
+                        <h4>${res.title}</h4>
+                        <div class="chapter-name"><span class="chapter-icon">📂</span> ${res.chapter}</div>
+                        <div class="resource-links">
+                            ${res.links.map(link => `
+                                <a href="${link.url}" target="_blank" class="resource-link ${linkClasses[link.type]}">
+                                    ${link.label}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ===== FILTER FUNCTION =====
+        function filterResources() {
+            const language = document.getElementById('filterLanguage').value;
+            const cls = document.getElementById('filterClass').value;
+            const subject = document.getElementById('filterSubject').value;
+            const channel = document.getElementById('filterChannel').value;
+            const chapterQuery = document.getElementById('filterChapter').value.toLowerCase();
+
+            const filtered = resources.filter(res => {
+                const matchLanguage = language === 'all' || res.language === language;
+                const matchClass = cls === 'all' || res.class === cls;
+                const matchSubject = subject === 'all' || res.subject === subject;
+                const matchChannel = channel === 'all' || res.channel === channel;
+                const matchChapter = res.chapter.toLowerCase().includes(chapterQuery);
+                return matchLanguage && matchClass && matchSubject && matchChannel && matchChapter;
+            });
+
+            renderResources(filtered);
+        }
+
+        // ===== EVENT LISTENERS =====
+        document.getElementById('filterLanguage').addEventListener('change', filterResources);
+        document.getElementById('filterClass').addEventListener('change', filterResources);
+        document.getElementById('filterSubject').addEventListener('change', filterResources);
+        document.getElementById('filterChannel').addEventListener('change', filterResources);
+        document.getElementById('filterChapter').addEventListener('input', filterResources);
+
+        // ===== INITIAL RENDER =====
+        renderResources(resources);
+
+        // ===== CANVAS BACKGROUND =====
+        window.addEventListener('load', function() {
+            const canvas = document.getElementById('bg');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const orbs = Array.from({ length: 14 }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                r: 30 + Math.random() * 90,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                hue: 200 + Math.random() * 40
+            }));
+            const stars = Array.from({ length: 180 }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                r: 0.3 + Math.random() * 1.4,
+                t: Math.random() * Math.PI * 2,
+                sp: 0.008 + Math.random() * 0.025
+            }));
+            const shooters = Array.from({ length: 24 }, () => ({
+                x: Math.random() * W, y: Math.random() * H * 0.35,
+                len: 70 + Math.random() * 130,
+                speed: 6 + Math.random() * 14,
+                op: 0, active: false,
+                delay: Math.floor(Math.random() * 70)
+            }));
+
+            function resetShooter(s) {
+                s.x = Math.random() * W * 0.85;
+                s.y = Math.random() * H * 0.25;
+                s.op = 1;
+                s.active = true;
+                s.delay = 60 + Math.floor(Math.random() * 140);
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                const grad = ctx.createRadialGradient(W * 0.3, H * 0.3, 0, W * 0.3, H * 0.3, W * 0.9);
+                grad.addColorStop(0, '#0a1a3a');
+                grad.addColorStop(0.6, '#050c20');
+                grad.addColorStop(1, '#00040a');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+
+                orbs.forEach(o => {
+                    o.x += o.vx; o.y += o.vy;
+                    if (o.x < 0 || o.x > W) o.vx *= -1;
+                    if (o.y < 0 || o.y > H) o.vy *= -1;
+                    const g = ctx.createRadialGradient(o.x - o.r * 0.2, o.y - o.r * 0.2, 0, o.x, o.y, o.r);
+                    g.addColorStop(0, `hsla(${o.hue}, 85%, 80%, 0.25)`);
+                    g.addColorStop(0.5, `hsla(${o.hue}, 75%, 55%, 0.10)`);
+                    g.addColorStop(1, `hsla(${o.hue}, 70%, 30%, 0)`);
+                    ctx.beginPath();
+                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.fillStyle = g;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = `hsla(${o.hue}, 80%, 75%, 0.08)`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                });
+
+                stars.forEach(s => {
+                    s.t += s.sp;
+                    const alpha = 0.2 + 0.8 * Math.abs(Math.sin(s.t));
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(200, 225, 255, ${alpha})`;
+                    ctx.fill();
+                });
+
+                shooters.forEach(s => {
+                    if (!s.active) {
+                        s.delay--;
+                        if (s.delay <= 0) resetShooter(s);
+                        return;
+                    }
+                    s.x += s.speed;
+                    s.y += s.speed * 0.4;
+                    s.op -= 0.012;
+                    if (s.op <= 0) {
+                        s.active = false;
+                        s.delay = 60 + Math.floor(Math.random() * 140);
+                        return;
+                    }
+                    const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.4);
+                    grad.addColorStop(0, `rgba(180, 220, 255, ${s.op})`);
+                    grad.addColorStop(0.4, `rgba(120, 180, 255, ${s.op * 0.5})`);
+                    grad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.beginPath();
+                    ctx.moveTo(s.x, s.y);
+                    ctx.lineTo(s.x - s.len, s.y - s.len * 0.4);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 2.0;
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, 2.8, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(240, 248, 255, ${s.op})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        });
+    </script>
+</body>
+</html>
