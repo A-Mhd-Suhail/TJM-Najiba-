@@ -148,68 +148,6 @@
             color: #fff;
         }
 
-        /* ===== REFRESH BUTTON ===== */
-        .refresh-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 40px;
-            background: rgba(10, 20, 50, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(100, 180, 255, 0.2);
-            color: rgba(200, 222, 255, 0.8);
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Segoe UI', sans-serif;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 30px rgba(100, 180, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-            animation: refreshPulse 3s ease-in-out infinite;
-        }
-        .refresh-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(100, 180, 255, 0.08), transparent 60%);
-            animation: refreshShine 4s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes refreshShine {
-            0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
-            50% { opacity: 0.8; }
-            100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; }
-        }
-        .refresh-btn:hover {
-            background: rgba(74, 124, 247, 0.15);
-            border-color: rgba(100, 180, 255, 0.4);
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 12px 50px rgba(100, 180, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-        .refresh-btn:active {
-            transform: scale(0.94);
-            box-shadow: 0 4px 20px rgba(100, 180, 255, 0.1);
-        }
-        .refresh-btn .icon {
-            display: inline-block;
-            animation: refreshSpin 2s linear infinite;
-        }
-        @keyframes refreshSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes refreshPulse {
-            0%, 100% { box-shadow: 0 4px 30px rgba(100, 180, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-            50% { box-shadow: 0 4px 50px rgba(100, 180, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
-        }
-
         /* ===== CEO BLOCK ===== */
         .ceo-wrapper {
             position: relative;
@@ -638,6 +576,77 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== REFRESH BUTTON BLOCK (CENTERED, RED 3D) ===== */
+        .refresh-block {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0 30px;
+        }
+        .refresh-btn-red {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 40px;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #e03131, #c92a2a);
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Segoe UI', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 8px 0 #8a1a1a,
+                0 12px 30px rgba(224, 49, 49, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: refreshRedPulse 3s ease-in-out infinite;
+        }
+        .refresh-btn-red::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 60%);
+            animation: refreshRedShine 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes refreshRedShine {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; }
+        }
+        .refresh-btn-red:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 
+                0 12px 0 #6f1515,
+                0 20px 50px rgba(224, 49, 49, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #f03e3e, #d63031);
+            color: #fff;
+        }
+        .refresh-btn-red:active {
+            transform: translateY(4px) scale(0.96);
+            box-shadow: 0 4px 0 #6f1515, 0 8px 30px rgba(224, 49, 49, 0.3);
+            transition-duration: 0.1s;
+        }
+        .refresh-btn-red .icon {
+            display: inline-block;
+            animation: refreshSpin 2s linear infinite;
+            font-size: 22px;
+        }
+        @keyframes refreshRedPulse {
+            0%, 100% { box-shadow: 0 8px 0 #8a1a1a, 0 12px 30px rgba(224, 49, 49, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 8px 0 #8a1a1a, 0 16px 50px rgba(224, 49, 49, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 0 rgba(0, 0, 0, 0.2); }
+        }
+
         /* ===== RESOURCE GRID ===== */
         .resource-grid {
             display: grid;
@@ -645,7 +654,7 @@
             gap: 20px;
         }
 
-        /* ===== RESOURCE CARDS WITH BORDER GLOW ===== */
+        /* ===== RESOURCE CARDS WITH BORDER GLOW (FIXED) ===== */
         .resource-card {
             background: rgba(15, 20, 50, 0.35);
             backdrop-filter: blur(20px) saturate(180%);
@@ -658,6 +667,8 @@
             position: relative;
             overflow: hidden;
             animation: cardEntry 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+            /* Ensure border glow visible */
+            isolation: isolate;
         }
         .resource-card:nth-child(1) { animation-delay: 0.05s; }
         .resource-card:nth-child(2) { animation-delay: 0.1s; }
@@ -671,7 +682,7 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ✨ ANIMATED BORDER GLOW ON CARDS */
+        /* ✨ ANIMATED BORDER GLOW ON CARDS (FIXED) */
         .resource-card::before {
             content: '';
             position: absolute;
@@ -681,13 +692,13 @@
             background: conic-gradient(
                 from var(--border-angle, 0deg),
                 transparent 0%,
-                rgba(155, 246, 255, 0.3) 10%,
-                rgba(189, 178, 255, 0.3) 20%,
-                rgba(255, 198, 255, 0.3) 30%,
+                rgba(155, 246, 255, 0.4) 10%,
+                rgba(189, 178, 255, 0.4) 20%,
+                rgba(255, 198, 255, 0.4) 30%,
                 transparent 40%,
                 transparent 60%,
-                rgba(155, 246, 255, 0.2) 70%,
-                rgba(189, 178, 255, 0.2) 80%,
+                rgba(155, 246, 255, 0.3) 70%,
+                rgba(189, 178, 255, 0.3) 80%,
                 transparent 100%
             );
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -698,7 +709,7 @@
             transition: opacity 0.6s ease;
             pointer-events: none;
             animation: rotateBorder 6s linear infinite;
-            z-index: 0;
+            z-index: -1;
         }
         .resource-card:hover::before {
             opacity: 1;
@@ -988,7 +999,6 @@
             0%, 100% { box-shadow: 0 8px 40px rgba(100, 180, 255, 0.1), 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.1), 0 0 60px rgba(100, 180, 255, 0.03); }
             50% { box-shadow: 0 12px 60px rgba(100, 180, 255, 0.15), 0 6px 30px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.15), 0 0 80px rgba(100, 180, 255, 0.06); }
         }
-        /* Glowing ring around the button */
         .float-up-btn::before {
             content: '';
             position: absolute;
@@ -1012,7 +1022,6 @@
             pointer-events: none;
             z-index: -1;
         }
-        /* Tooltip on hover */
         .float-up-btn .tooltip {
             position: absolute;
             right: 70px;
@@ -1159,7 +1168,7 @@
             .ceo-crown { font-size: 26px; }
             .ceo-sparkle { font-size: 20px; }
             .float-up-btn { width: 52px; height: 52px; font-size: 24px; bottom: 24px; right: 24px; }
-            .refresh-btn { padding: 8px 18px; font-size: 12px; }
+            .refresh-btn-red { padding: 12px 30px; font-size: 16px; }
         }
         @media (max-width: 768px) {
             .library-title { font-size: 32px; }
@@ -1172,6 +1181,7 @@
             .heart-message { padding: 14px 18px; }
             .heart-message .msg-text { font-size: 15px; }
             .float-up-btn { width: 48px; height: 48px; font-size: 20px; bottom: 20px; right: 20px; }
+            .refresh-btn-red { padding: 10px 24px; font-size: 15px; }
         }
         @media (max-width: 520px) {
             .library-title { font-size: 26px; }
@@ -1188,7 +1198,7 @@
             .ceo-label { font-size: 8px; letter-spacing: 2px; }
             .float-up-btn { width: 42px; height: 42px; font-size: 16px; bottom: 16px; right: 16px; }
             .float-up-btn .tooltip { right: 56px; font-size: 10px; padding: 4px 10px; }
-            .refresh-btn { padding: 6px 14px; font-size: 11px; }
+            .refresh-btn-red { padding: 8px 18px; font-size: 13px; }
         }
     </style>
 </head>
@@ -1233,10 +1243,6 @@
             <button class="btn-action back" onclick="history.back()">← Go Back</button>
             <button class="btn-action home" onclick="window.location.href='index.html'">🏠 Go to Home</button>
             <button class="btn-action" onclick="window.location.href='index.html#exams'">🔄 Change Portal</button>
-            <!-- ===== REFRESH BUTTON (Glassy, Cute, Shiny) ===== -->
-            <button class="refresh-btn" onclick="location.reload()">
-                <span class="icon">⟳</span> Refresh
-            </button>
         </div>
 
         <div class="search-filter-block">
@@ -1280,7 +1286,6 @@
                 <select id="filterChannel">
                     <option value="all">All Channels</option>
                     <option value="vedantu">Vedantu</option>
-                    <!-- removed "vedanty" as requested -->
                     <option value="physicswallah">Physics Wallah</option>
                     <option value="byjus">BYJU'S</option>
                     <option value="unacademy">Unacademy</option>
@@ -1322,6 +1327,13 @@
             <span class="msg-sub">— The ultimate place to find the perfect study material 💫</span>
         </div>
 
+        <!-- ===== REFRESH BUTTON BLOCK (CENTERED, RED 3D) ===== -->
+        <div class="refresh-block">
+            <button class="refresh-btn-red" onclick="location.reload()">
+                <span class="icon">⟳</span> Refresh Resources
+            </button>
+        </div>
+
         <div id="resourceContainer" class="resource-grid">
             <!-- Resources rendered by JavaScript -->
         </div>
@@ -1352,6 +1364,17 @@
         // ====================================================================
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTWGmUd6fVE3PA7NRPCINzMnjakTAaTzZwxYUsUCQsjaJkcaeol-33tnH7Ui0W7eKjIQTJp0xIdLbJD/pub?output=csv';
         const LOCAL_CSV = 'resources.csv';
+
+        // Channel name mapping (CSV values → dropdown values)
+        const CHANNEL_MAP = {
+            'physics wallah': 'physicswallah',
+            'magnet brains': 'magnetbrains',
+            'learnohub': 'learnohub',
+            'vedantu': 'vedantu',
+            'byju\'s': 'byjus',
+            'unacademy': 'unacademy',
+            'khan academy': 'khanacademy'
+        };
 
         let allResources = [];
         let container = document.getElementById('resourceContainer');
@@ -1425,9 +1448,13 @@
         //  NORMALIZE / RENDER / FILTER
         // ====================================================================
         function normalizeResource(row) {
+            // Normalize channel: lower-case and map via CHANNEL_MAP
+            let channelRaw = (row.channel || '').toLowerCase().trim();
+            let channelKey = CHANNEL_MAP[channelRaw] || channelRaw.replace(/\s+/g, ''); // fallback
+
             return {
                 language: (row.language || 'english').toLowerCase().trim(),
-                channel: (row.channel || 'vedantu').toLowerCase().trim(),
+                channel: channelKey,  // Now matches dropdown values (e.g., "physicswallah")
                 board: (row.board || 'cbse').toLowerCase().trim(),
                 class: (row.class || '10').toString().trim(),
                 subject: (row.subject || 'math').toLowerCase().trim(),
@@ -1602,8 +1629,8 @@
         function loadFallbackData() {
             const fallbackCSV = `
 language,channel,board,class,subject,chapter,title,year,link_type,link_label,link_url
-Tamil,vedantu,cbse,12,math,Trigonometry,Sample Resource 1,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
-English,physicswallah,cbse,12,physics,Electrostatics,Sample Resource 2,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
+English,Physics Wallah,cbse,9,chemistry,Matter in Our Surroundings,Sample: Matter,2024-2025,youtube,Watch Now,https://www.youtube.com
+English,Magnet Brains,cbse,10,math,Trigonometry,Sample: Trigonometry,2024-2025,youtube,Watch Now,https://www.youtube.com
             `.trim();
             const parsed = parseCSV(fallbackCSV);
             if (parsed.length === 0) {
