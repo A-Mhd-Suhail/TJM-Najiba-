@@ -347,7 +347,7 @@
             color: #9bf6ff;
         }
 
-        /* ===== SEARCH FILTERS - GLOWING GLASS BORDER WITH ROTATING GLOW ===== */
+        /* ===== SEARCH FILTERS - GLOWING GLASS BORDER ===== */
         .search-filter-wrapper {
             position: relative;
             margin-bottom: 24px;
@@ -729,7 +729,7 @@
             gap: 20px;
         }
 
-        /* ===== RESOURCE CARDS WITH 3D BOTTLE & BORDER GLOW ===== */
+        /* ===== RESOURCE CARDS WITH BORDER GLOW (NO BOTTLE) ===== */
         .resource-card {
             background: rgba(15, 20, 50, 0.35);
             backdrop-filter: blur(20px) saturate(180%);
@@ -787,37 +787,6 @@
             opacity: 1;
         }
 
-        /* ===== 3D BOTTLE ILLUSTRATION ===== */
-        .resource-bottle {
-            position: absolute;
-            top: -30px;
-            right: -20px;
-            width: 140px;
-            height: 160px;
-            opacity: 0.3;
-            transition: all 0.5s ease;
-            transform-style: preserve-3d;
-            animation: bottleFloat 4s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .resource-card:hover .resource-bottle {
-            opacity: 0.5;
-            transform: translateY(-10px) rotateZ(-15deg) rotateX(10deg);
-        }
-
-        @keyframes bottleFloat {
-            0%, 100% { transform: translateY(0) rotateZ(-5deg) rotateX(5deg); }
-            50% { transform: translateY(-15px) rotateZ(-8deg) rotateX(8deg); }
-        }
-
-        .bottle-svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 10px 30px rgba(100, 180, 255, 0.3));
-        }
-
         /* Card inner glow on hover */
         .resource-card::after {
             content: '';
@@ -867,19 +836,7 @@
             font-size: 10px;
             font-family: 'Segoe UI', sans-serif;
             letter-spacing: 0.3px;
-            animation: tagFloat 3s ease-in-out infinite;
         }
-        .resource-breadcrumb span:nth-child(2) { animation-delay: 0.1s; }
-        .resource-breadcrumb span:nth-child(3) { animation-delay: 0.2s; }
-        .resource-breadcrumb span:nth-child(4) { animation-delay: 0.3s; }
-        .resource-breadcrumb span:nth-child(5) { animation-delay: 0.4s; }
-        .resource-breadcrumb span:nth-child(6) { animation-delay: 0.5s; }
-
-        @keyframes tagFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-        }
-
         .resource-breadcrumb .board-tag {
             background: rgba(74, 124, 247, 0.08);
             border-color: rgba(74, 124, 247, 0.05);
@@ -1035,12 +992,6 @@
             letter-spacing: 0.5px;
             font-family: 'Segoe UI', sans-serif;
             z-index: 1;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
         }
 
         /* ===== NO RESULTS ===== */
@@ -1525,21 +1476,6 @@
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTWGmUd6fVE3PA7NRPCINzMnjakTAaTzZwxYUsUCQsjaJkcaeol-33tnH7Ui0W7eKjIQTJp0xIdLbJD/pub?output=csv';
         const LOCAL_CSV = 'resources.csv';
 
-        // Channel name mapping (CSV values → dropdown values) - FIXED
-        const CHANNEL_MAP = {
-            'vedantu': 'vedantu',
-            'physics wallah': 'physicswallah',
-            'physicswallah': 'physicswallah',
-            'byju\'s': 'byjus',
-            'byjus': 'byjus',
-            'unacademy': 'unacademy',
-            'magnet brains': 'magnetbrains',
-            'magnetbrains': 'magnetbrains',
-            'learnohub': 'learnohub',
-            'khan academy': 'khanacademy',
-            'khanacademy': 'khanacademy'
-        };
-
         let allResources = [];
         let container = document.getElementById('resourceContainer');
 
@@ -1612,9 +1548,9 @@
         //  NORMALIZE / RENDER / FILTER
         // ====================================================================
         function normalizeResource(row) {
-            // Normalize channel: lower-case and map via CHANNEL_MAP
+            // Remove spaces from channel name to match dropdown values
             let channelRaw = (row.channel || '').toLowerCase().trim();
-            let channelKey = CHANNEL_MAP[channelRaw] || channelRaw.replace(/\s+/g, '');
+            let channelKey = channelRaw.replace(/\s+/g, ''); // e.g., "physics wallah" → "physicswallah"
 
             return {
                 language: (row.language || 'english').toLowerCase().trim(),
@@ -1650,41 +1586,6 @@
                 'sample': '📝 Sample' 
             };
             return labels[type.toLowerCase()] || '🔗 Open';
-        }
-
-        // ===== 3D BOTTLE SVG ===== 
-        function getBottleSVG() {
-            return `<svg class="bottle-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#9bf6ff;stop-opacity:0.8" />
-                        <stop offset="50%" style="stop-color:#7fb3ff;stop-opacity:0.6" />
-                        <stop offset="100%" style="stop-color:#64c8ff;stop-opacity:0.4" />
-                    </linearGradient>
-                    <filter id="bottleGlow">
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Bottle cap -->
-                <rect x="38" y="8" width="24" height="8" rx="2" fill="#ffd700" filter="url(#bottleGlow)"/>
-                <rect x="36" y="14" width="28" height="4" rx="1" fill="#ffed4e" opacity="0.8"/>
-                <!-- Bottle neck -->
-                <path d="M 42 18 L 40 28 L 60 28 L 58 18 Z" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.9"/>
-                <!-- Bottle body -->
-                <ellipse cx="50" cy="28" rx="18" ry="8" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.8"/>
-                <path d="M 40 28 Q 35 50 38 75 Q 40 95 50 105 Q 60 95 62 75 Q 65 50 60 28" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.85"/>
-                <!-- Bottle bottom -->
-                <ellipse cx="50" cy="105" rx="12" ry="8" fill="#5fa8d3" filter="url(#bottleGlow)" opacity="0.7"/>
-                <!-- Highlight shine -->
-                <ellipse cx="44" cy="45" rx="6" ry="20" fill="white" opacity="0.3" filter="url(#bottleGlow)"/>
-                <ellipse cx="48" cy="70" rx="3" ry="12" fill="white" opacity="0.2"/>
-                <!-- Glow effect -->
-                <circle cx="50" cy="60" r="25" fill="#9bf6ff" opacity="0.1" filter="url(#bottleGlow)"/>
-            </svg>`;
         }
 
         function renderResources(data) {
@@ -1734,7 +1635,6 @@
 
                 html += `
                     <div class="resource-card">
-                        <div class="resource-bottle">${getBottleSVG()}</div>
                         <span class="resource-glow-badge">✦ #${i + 1}</span>
                         <div class="resource-breadcrumb">
                             <span class="board-tag">${boardTag}</span>
