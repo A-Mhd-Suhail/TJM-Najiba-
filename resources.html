@@ -5,644 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>✨ Resource Library · Studies Made Easy</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a7cf7'/%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='%23ffffff'%3ES%3C/text%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='none' stroke='%23a0c4ff' stroke-width='2' opacity='0.5'%3ES%3C/text%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="style.css" />
     <style>
-        /* ===== RESOURCE LIBRARY STYLES ===== */
-        .resource-library {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 20px auto 30px;
-            padding: 0 24px;
-        }
-
-        /* ===== BUTTONS ROW ===== */
-        .buttons-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
-            justify-content: flex-start;
-        }
-
-        .btn-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 40px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(200, 222, 255, 0.7);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            cursor: pointer;
-        }
-
-        .btn-action:hover {
-            background: rgba(74, 124, 247, 0.12);
-            border-color: rgba(74, 124, 247, 0.25);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(74, 124, 247, 0.1);
-        }
-
-        .btn-action.back {
-            background: rgba(255, 0, 0, 0.04);
-            border-color: rgba(255, 0, 0, 0.08);
-            color: rgba(255, 100, 100, 0.6);
-        }
-
-        .btn-action.back:hover {
-            background: rgba(255, 0, 0, 0.1);
-            border-color: rgba(255, 0, 0, 0.2);
-            color: #ff6b6b;
-        }
-
-        .btn-action.home {
-            background: rgba(155, 246, 255, 0.04);
-            border-color: rgba(155, 246, 255, 0.08);
-            color: rgba(155, 246, 255, 0.6);
-        }
-
-        .btn-action.home:hover {
-            background: rgba(155, 246, 255, 0.1);
-            border-color: rgba(155, 246, 255, 0.2);
-            color: #9bf6ff;
-        }
-
-        /* ===== SEARCH + CONFIRM BLOCK ===== */
-        .search-confirm-block {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            gap: 12px;
-            padding: 18px 22px;
-            border-radius: 24px;
-            background: rgba(15, 20, 50, 0.4);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(155, 246, 255, 0.06);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-            margin-bottom: 24px;
-            transition: all 0.4s ease;
-        }
-
-        .search-confirm-block:hover {
-            border-color: rgba(155, 246, 255, 0.12);
-            box-shadow: 0 8px 60px rgba(155, 246, 255, 0.04);
-        }
-
-        .search-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            flex: 1;
-            min-width: 140px;
-        }
-
-        .search-group label {
-            font-size: 11px;
-            font-weight: 700;
-            color: rgba(180, 210, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .search-group select {
-            padding: 10px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: #e8eeff;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Segoe UI', 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            outline: none;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .search-group select option {
-            background: #0a1a3a;
-            color: #e8eeff;
-        }
-
-        .search-group select:hover {
-            border-color: rgba(155, 246, 255, 0.15);
-        }
-
-        .search-group select:focus {
-            border-color: rgba(155, 246, 255, 0.35);
-            box-shadow: 0 0 40px rgba(155, 246, 255, 0.05), inset 0 0 20px rgba(155, 246, 255, 0.02);
-        }
-
-        .btn-confirm {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 28px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, rgba(155, 246, 255, 0.12), rgba(189, 178, 255, 0.12));
-            border: 1px solid rgba(155, 246, 255, 0.15);
-            color: #9bf6ff;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            white-space: nowrap;
-            align-self: flex-end;
-        }
-
-        .btn-confirm:hover {
-            background: linear-gradient(135deg, rgba(155, 246, 255, 0.2), rgba(189, 178, 255, 0.2));
-            border-color: rgba(155, 246, 255, 0.35);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(155, 246, 255, 0.15);
-        }
-
-        .btn-confirm .arrow {
-            display: inline-block;
-            transition: transform 0.4s ease;
-        }
-
-        .btn-confirm:hover .arrow {
-            transform: translateX(6px);
-        }
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000820; min-height: 100vh; overflow-x: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #e8eeff; }
+        canvas { position: fixed; top: 0; left: 0; z-index: 0; display: block; }
 
         /* ===== HEADER ===== */
-        .library-header {
-            text-align: center;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .library-title {
-            font-size: 48px;
-            font-weight: 900;
-            font-family: 'Poppins', 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #ffc6ff, #bdb2ff, #9bf6ff, #ffc6ff);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleShine 4s linear infinite;
-            margin-bottom: 4px;
-            letter-spacing: -1px;
-        }
-
-        @keyframes titleShine {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
-        }
-
-        .library-title .sparkle {
-            display: inline-block;
-            animation: sparkleSpin 3s ease-in-out infinite;
-        }
-
-        @keyframes sparkleSpin {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(20deg); }
-        }
-
-        .library-subtitle {
-            color: rgba(180, 210, 255, 0.4);
-            font-size: 18px;
-            font-weight: 300;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .library-subtitle .highlight-sub {
-            background: linear-gradient(90deg, #ffc6ff, #bdb2ff, #9bf6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-            animation: subGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes subGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(155, 246, 255, 0.1)); }
-            50% { filter: drop-shadow(0 0 30px rgba(155, 246, 255, 0.2)); }
-        }
-
-        /* ===== HEART TOUCHING MESSAGE BLOCK - GLOWING ===== */
-        .heart-message {
-            margin: 20px auto 30px;
-            padding: 22px 30px;
-            border-radius: 28px;
-            background: linear-gradient(135deg, 
-                rgba(255, 215, 0, 0.04), 
-                rgba(255, 100, 200, 0.04), 
-                rgba(155, 246, 255, 0.04)
-            );
-            border: 1.5px solid rgba(255, 215, 0, 0.08);
-            text-align: center;
-            backdrop-filter: blur(16px) saturate(180%);
+        .header {
+            position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; margin: 18px 24px 10px; height: 80px; border-radius: 60px;
+            background: rgba(10,20,50,0.55); backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            box-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.02),
-                inset 0 0 40px rgba(255, 215, 0, 0.02);
-            animation: heartPulse 4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(100,180,255,0.20);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,124,247,0.15) inset;
+            transition: box-shadow 0.3s;
         }
+        .header:hover { box-shadow: 0 12px 50px rgba(74,124,247,0.25), 0 0 0 1px rgba(74,124,247,0.4) inset; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-size: 38px; filter: drop-shadow(0 0 18px rgba(100,180,255,0.5)); animation: floatBook 3.5s ease-in-out infinite; cursor: default; }
+        @keyframes floatBook { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.04); } }
+        .logo-group { display: flex; flex-direction: column; gap: 2px; }
+        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.3px; background: linear-gradient(135deg, #f0f9ff 0%, #a0c4ff 50%, #7fb3ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(74,124,247,0.3)); }
+        .nav-menu { display: flex; gap: 8px; list-style: none; }
+        .nav-menu li { padding: 8px 18px; border-radius: 40px; font-size: 17px; font-weight: 500; color: rgba(210,230,255,0.7); cursor: pointer; transition: all 0.25s ease; background: transparent; border: 1px solid transparent; }
+        .nav-menu li:hover { background: rgba(74,124,247,0.15); border-color: rgba(74,124,247,0.3); color: #fff; box-shadow: 0 0 30px rgba(74,124,247,0.2); transform: scale(1.02); }
 
-        .heart-message::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.03), transparent 60%);
-            animation: heartShine 6s linear infinite;
-            pointer-events: none;
-        }
+        /* ===== CEO BLOCK ===== */
+        .ceo-wrapper { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto 10px; padding: 0 24px; display: flex; justify-content: center; }
+        .ceo-container { position: relative; padding: 22px 55px; border-radius: 50px; background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,100,200,0.10), rgba(155,246,255,0.08)); border: 2px solid rgba(255,215,0,0.3); box-shadow: 0 0 50px rgba(255,215,0,0.15), 0 0 100px rgba(255,100,200,0.08), inset 0 0 50px rgba(255,215,0,0.05); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); overflow: hidden; animation: ceoContainerPulse 3s ease-in-out infinite; transition: all 0.4s ease; width: 100%; max-width: 750px; }
+        .ceo-container:hover { border-color: rgba(255,215,0,0.6); box-shadow: 0 0 80px rgba(255,215,0,0.25), 0 0 150px rgba(255,100,200,0.15), inset 0 0 80px rgba(255,215,0,0.08); transform: scale(1.02); }
+        @keyframes ceoContainerPulse { 0%,100% { border-color: rgba(255,215,0,0.3); box-shadow: 0 0 50px rgba(255,215,0,0.15); } 50% { border-color: rgba(255,215,0,0.5); box-shadow: 0 0 80px rgba(255,215,0,0.3), 0 0 150px rgba(255,100,200,0.12); } }
+        .ceo-shine { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(255,215,0,0.05), transparent 60%); animation: ceoShine 6s linear infinite; pointer-events: none; }
+        @keyframes ceoShine { 0% { transform: rotate(0deg) scale(1); opacity: 0.3; } 50% { opacity: 0.8; } 100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; } }
+        .ceo-glow-ring { position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 54px; background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,100,200,0.15), rgba(155,246,255,0.1), rgba(255,215,0,0.2)); animation: ceoRingPulse 3s ease-in-out infinite; pointer-events: none; }
+        @keyframes ceoRingPulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.02); } }
+        .ceo-content { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .ceo-crown { font-size: 40px; animation: crownFloat 3s ease-in-out infinite; filter: drop-shadow(0 0 30px rgba(255,215,0,0.4)); }
+        @keyframes crownFloat { 0%,100% { transform: translateY(0) scale(1) rotate(0deg); } 50% { transform: translateY(-6px) scale(1.08) rotate(5deg); } }
+        .ceo-text-group { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .ceo-label { font-size: 13px; font-weight: 700; color: #ffd700; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.1); background: linear-gradient(90deg, #ffd700, #ff6b9d, #ffd700); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: labelShine 3s linear infinite; }
+        @keyframes labelShine { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        .ceo-name { font-size: 36px; font-weight: 900; font-family: 'Segoe UI', 'Poppins', 'Comic Sans MS', cursive, sans-serif; background: linear-gradient(135deg, #ffd700, #ff6b9d, #9bf6ff, #ffd700); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: ceoNameShine 4s linear infinite; letter-spacing: 2px; filter: drop-shadow(0 0 40px rgba(255,215,0,0.3)); text-shadow: none; }
+        @keyframes ceoNameShine { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+        .ceo-sparkle { font-size: 30px; animation: sparklePulse 2s ease-in-out infinite; filter: drop-shadow(0 0 30px rgba(255,215,0,0.4)); }
+        @keyframes sparklePulse { 0%,100% { transform: scale(1) rotate(0deg); opacity: 0.5; } 50% { transform: scale(1.4) rotate(30deg); opacity: 1; } }
 
-        @keyframes heartShine {
-            0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
-            50% { opacity: 0.8; }
-            100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; }
-        }
+        /* ===== RESOURCE LIBRARY ===== */
+        .resource-library { position: relative; z-index: 1; max-width: 1100px; margin: 20px auto 30px; padding: 0 24px; }
 
-        @keyframes heartPulse {
-            0%, 100% {
-                border-color: rgba(255, 215, 0, 0.08);
-                box-shadow: 0 0 40px rgba(255, 215, 0, 0.02);
-            }
-            50% {
-                border-color: rgba(255, 215, 0, 0.2);
-                box-shadow: 
-                    0 0 60px rgba(255, 215, 0, 0.06),
-                    0 0 100px rgba(255, 100, 200, 0.04);
-            }
-        }
+        .buttons-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; justify-content: flex-start; }
+        .btn-action { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(200,222,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; font-family: 'Poppins','Segoe UI',sans-serif; transition: all 0.3s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; }
+        .btn-action:hover { background: rgba(74,124,247,0.12); border-color: rgba(74,124,247,0.25); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(74,124,247,0.1); }
+        .btn-action.back { background: rgba(255,0,0,0.04); border-color: rgba(255,0,0,0.08); color: rgba(255,100,100,0.6); }
+        .btn-action.back:hover { background: rgba(255,0,0,0.1); border-color: rgba(255,0,0,0.2); color: #ff6b6b; }
+        .btn-action.home { background: rgba(155,246,255,0.04); border-color: rgba(155,246,255,0.08); color: rgba(155,246,255,0.6); }
+        .btn-action.home:hover { background: rgba(155,246,255,0.1); border-color: rgba(155,246,255,0.2); color: #9bf6ff; }
 
-        .heart-message .heart-icon {
-            font-size: 32px;
-            display: inline-block;
-            animation: heartBeat 1.5s ease-in-out infinite;
-        }
+        .search-filter-block { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; padding: 18px 22px; border-radius: 24px; background: rgba(15,20,50,0.4); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(155,246,255,0.06); box-shadow: 0 8px 40px rgba(0,0,0,0.2); margin-bottom: 24px; transition: all 0.4s ease; }
+        .search-filter-block:hover { border-color: rgba(155,246,255,0.12); box-shadow: 0 8px 60px rgba(155,246,255,0.04); }
+        .search-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+        .search-group label { font-size: 11px; font-weight: 700; color: rgba(180,210,255,0.4); text-transform: uppercase; letter-spacing: 2px; font-family: 'Poppins',sans-serif; }
+        .search-group select { padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.03); color: #e8eeff; font-size: 14px; font-weight: 500; font-family: 'Segoe UI','Poppins',sans-serif; transition: all 0.3s ease; outline: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: pointer; width: 100%; }
+        .search-group select option { background: #0a1a3a; color: #e8eeff; }
+        .search-group select:hover { border-color: rgba(155,246,255,0.15); }
+        .search-group select:focus { border-color: rgba(155,246,255,0.35); box-shadow: 0 0 40px rgba(155,246,255,0.05), inset 0 0 20px rgba(155,246,255,0.02); }
+        .search-group input { padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.03); color: #e8eeff; font-size: 14px; font-weight: 500; font-family: 'Segoe UI','Poppins',sans-serif; transition: all 0.3s ease; outline: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); width: 100%; }
+        .search-group input:hover { border-color: rgba(155,246,255,0.15); }
+        .search-group input:focus { border-color: rgba(155,246,255,0.35); box-shadow: 0 0 40px rgba(155,246,255,0.05), inset 0 0 20px rgba(155,246,255,0.02); }
+        .search-group input::placeholder { color: rgba(180,210,255,0.2); font-weight: 300; }
 
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.2); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
-        }
+        .library-header { text-align: center; margin-bottom: 24px; position: relative; }
+        .library-title { font-size: 48px; font-weight: 900; font-family: 'Poppins','Segoe UI','Comic Sans MS',cursive,sans-serif; background: linear-gradient(135deg, #ffc6ff, #bdb2ff, #9bf6ff, #ffc6ff); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: titleShine 4s linear infinite; margin-bottom: 4px; letter-spacing: -1px; }
+        @keyframes titleShine { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+        .library-title .sparkle { display: inline-block; animation: sparkleSpin 3s ease-in-out infinite; }
+        @keyframes sparkleSpin { 0%,100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.2) rotate(20deg); } }
+        .library-subtitle { color: rgba(180,210,255,0.4); font-size: 18px; font-weight: 300; font-family: 'Poppins',sans-serif; letter-spacing: 1px; }
+        .library-subtitle .highlight-sub { background: linear-gradient(90deg, #ffc6ff, #bdb2ff, #9bf6ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; animation: subGlow 3s ease-in-out infinite; }
+        @keyframes subGlow { 0%,100% { filter: drop-shadow(0 0 10px rgba(155,246,255,0.1)); } 50% { filter: drop-shadow(0 0 30px rgba(155,246,255,0.2)); } }
 
-        .heart-message .msg-text {
-            font-size: 20px;
-            font-weight: 600;
-            font-family: 'Poppins', 'Segoe UI', cursive, sans-serif;
-            background: linear-gradient(90deg, #ffd700, #ff6b9d, #9bf6ff, #ffd700);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: msgShine 4s linear infinite;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-        }
+        .heart-message { margin: 20px auto 30px; padding: 22px 30px; border-radius: 28px; background: linear-gradient(135deg, rgba(255,215,0,0.04), rgba(255,100,200,0.04), rgba(155,246,255,0.04)); border: 1.5px solid rgba(255,215,0,0.08); text-align: center; backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 0 40px rgba(255,215,0,0.02), inset 0 0 40px rgba(255,215,0,0.02); animation: heartPulse 4s ease-in-out infinite; position: relative; overflow: hidden; }
+        .heart-message::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(255,215,0,0.03), transparent 60%); animation: heartShine 6s linear infinite; pointer-events: none; }
+        @keyframes heartShine { 0% { transform: rotate(0deg) scale(1); opacity: 0.3; } 50% { opacity: 0.8; } 100% { transform: rotate(360deg) scale(1.2); opacity: 0.3; } }
+        @keyframes heartPulse { 0%,100% { border-color: rgba(255,215,0,0.08); box-shadow: 0 0 40px rgba(255,215,0,0.02); } 50% { border-color: rgba(255,215,0,0.2); box-shadow: 0 0 60px rgba(255,215,0,0.06), 0 0 100px rgba(255,100,200,0.04); } }
+        .heart-message .heart-icon { font-size: 32px; display: inline-block; animation: heartBeat 1.5s ease-in-out infinite; }
+        @keyframes heartBeat { 0%,100% { transform: scale(1); } 15% { transform: scale(1.2); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 60% { transform: scale(1); } }
+        .heart-message .msg-text { font-size: 20px; font-weight: 600; font-family: 'Poppins','Segoe UI',cursive,sans-serif; background: linear-gradient(90deg, #ffd700, #ff6b9d, #9bf6ff, #ffd700); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: msgShine 4s linear infinite; letter-spacing: 0.5px; line-height: 1.6; }
+        @keyframes msgShine { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+        .heart-message .msg-sub { display: block; font-size: 14px; color: rgba(180,210,255,0.3); font-weight: 300; margin-top: 4px; font-family: 'Poppins',sans-serif; letter-spacing: 0.5px; }
+        .heart-message .glow-dots { display: inline-block; animation: dotGlow 2s ease-in-out infinite; }
+        @keyframes dotGlow { 0%,100% { opacity: 0.3; text-shadow: 0 0 10px rgba(255,215,0,0); } 50% { opacity: 1; text-shadow: 0 0 30px rgba(255,215,0,0.5); } }
 
-        @keyframes msgShine {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
-        }
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .resource-card { background: rgba(15,20,50,0.4); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1px solid rgba(255,255,255,0.04); border-radius: 28px; padding: 26px 24px; transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow: 0 8px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+        .resource-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; border-radius: 30px; background: linear-gradient(135deg, rgba(155,246,255,0.05), rgba(189,178,255,0.05), rgba(255,198,255,0.05), rgba(155,246,255,0.05)); background-size: 300% 300%; opacity: 0; transition: opacity 0.5s ease; z-index: -1; animation: borderGlow 4s ease-in-out infinite; }
+        @keyframes borderGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .resource-card:hover::before { opacity: 1; }
+        .resource-card::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(155,246,255,0.03), transparent 60%); opacity: 0; transition: opacity 0.6s; pointer-events: none; }
+        .resource-card:hover::after { opacity: 1; }
+        .resource-card:hover { background: rgba(20,25,60,0.6); border-color: rgba(155,246,255,0.12); transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 80px rgba(74,124,247,0.08), 0 0 60px rgba(155,246,255,0.03); }
 
-        .heart-message .msg-sub {
-            display: block;
-            font-size: 14px;
-            color: rgba(180, 210, 255, 0.3);
-            font-weight: 300;
-            margin-top: 4px;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.5px;
-        }
+        .resource-breadcrumb { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-bottom: 12px; }
+        .resource-breadcrumb span { display: inline-block; padding: 3px 14px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); color: rgba(180,210,255,0.5); font-weight: 600; font-size: 11px; font-family: 'Poppins','Segoe UI',sans-serif; letter-spacing: 0.3px; }
+        .resource-breadcrumb .board-tag { background: rgba(74,124,247,0.12); border-color: rgba(74,124,247,0.08); color: #7fb3ff; }
+        .resource-breadcrumb .class-tag { background: rgba(255,198,255,0.08); border-color: rgba(255,198,255,0.08); color: #ffc6ff; }
+        .resource-breadcrumb .subject-tag { background: rgba(155,246,255,0.08); border-color: rgba(155,246,255,0.08); color: #9bf6ff; }
+        .resource-breadcrumb .lang-tag { background: rgba(255,215,0,0.06); border-color: rgba(255,215,0,0.08); color: #ffd700; }
+        .resource-breadcrumb .channel-tag { background: rgba(255,100,200,0.08); border-color: rgba(255,100,200,0.08); color: #ff6b9d; }
+        .resource-breadcrumb .year-tag { background: rgba(100,200,255,0.08); border-color: rgba(100,200,255,0.08); color: #64c8ff; }
 
-        .heart-message .glow-dots {
-            display: inline-block;
-            animation: dotGlow 2s ease-in-out infinite;
-        }
+        .resource-card h4 { color: #ffffff; font-size: 20px; font-weight: 700; font-family: 'Poppins','Segoe UI',sans-serif; margin-bottom: 3px; letter-spacing: -0.3px; }
+        .resource-card .chapter-name { color: rgba(180,210,255,0.4); font-size: 14px; font-weight: 400; font-family: 'Poppins',sans-serif; margin-bottom: 16px; letter-spacing: 0.3px; }
+        .resource-card .chapter-name .chapter-icon { margin-right: 4px; }
+        .resource-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+        .resource-link { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 40px; text-decoration: none; font-size: 13px; font-weight: 600; font-family: 'Poppins','Segoe UI',sans-serif; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); letter-spacing: 0.3px; }
+        .resource-link.youtube { background: rgba(255,0,0,0.06); border: 1px solid rgba(255,0,0,0.1); color: #ff6b6b; }
+        .resource-link.youtube:hover { background: rgba(255,0,0,0.12); border-color: rgba(255,0,0,0.25); transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(255,0,0,0.1); }
+        .resource-link.pdf { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.1); color: #ffd700; }
+        .resource-link.pdf:hover { background: rgba(255,215,0,0.12); border-color: rgba(255,215,0,0.25); transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(255,215,0,0.1); }
+        .resource-link.notes { background: rgba(155,246,255,0.06); border: 1px solid rgba(155,246,255,0.1); color: #9bf6ff; }
+        .resource-link.notes:hover { background: rgba(155,246,255,0.12); border-color: rgba(155,246,255,0.25); transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(155,246,255,0.1); }
+        .resource-link.sample { background: rgba(189,178,255,0.06); border: 1px solid rgba(189,178,255,0.1); color: #bdb2ff; }
+        .resource-link.sample:hover { background: rgba(189,178,255,0.12); border-color: rgba(189,178,255,0.25); transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 30px rgba(189,178,255,0.1); }
+        .resource-glow-badge { position: absolute; top: 12px; right: 12px; font-size: 10px; padding: 4px 12px; border-radius: 20px; background: rgba(155,246,255,0.05); border: 1px solid rgba(155,246,255,0.04); color: rgba(155,246,255,0.2); font-weight: 600; letter-spacing: 0.5px; font-family: 'Poppins',sans-serif; }
 
-        @keyframes dotGlow {
-            0%, 100% { opacity: 0.3; text-shadow: 0 0 10px rgba(255, 215, 0, 0); }
-            50% { opacity: 1; text-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
-        }
+        .no-results { text-align: center; padding: 60px 20px; color: rgba(180,210,255,0.3); }
+        .no-results .big-icon { font-size: 64px; display: block; margin-bottom: 16px; animation: floatIcon 3s ease-in-out infinite; }
+        @keyframes floatIcon { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .no-results h4 { color: rgba(180,210,255,0.5); font-size: 22px; font-weight: 600; font-family: 'Poppins',sans-serif; }
+        .no-results p { font-size: 14px; margin-top: 4px; font-family: 'Poppins',sans-serif; color: rgba(180,210,255,0.2); }
 
-        /* ===== RESOURCE CARDS - GLOWING & DARK ===== */
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
+        .float-up-btn { position: fixed; bottom: 40px; right: 40px; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, rgba(155,246,255,0.2), rgba(189,178,255,0.2)); border: 1.5px solid rgba(155,246,255,0.3); color: #9bf6ff; font-size: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 4px 30px rgba(155,246,255,0.15); opacity: 0; transform: translateY(20px) scale(0.8); pointer-events: none; animation: floatPulse 2.5s ease-in-out infinite; }
+        .float-up-btn.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        .float-up-btn:hover { background: linear-gradient(135deg, rgba(155,246,255,0.3), rgba(189,178,255,0.3)); border-color: rgba(155,246,255,0.6); transform: translateY(-4px) scale(1.08); box-shadow: 0 8px 50px rgba(155,246,255,0.3); }
+        .float-up-btn .arrow-up { display: inline-block; animation: arrowUpFloat 2s ease-in-out infinite; }
+        @keyframes arrowUpFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes floatPulse { 0%,100% { box-shadow: 0 4px 30px rgba(155,246,255,0.15); } 50% { box-shadow: 0 4px 50px rgba(155,246,255,0.3), 0 0 80px rgba(155,246,255,0.05); } }
+        .float-up-btn .tooltip { position: absolute; right: 70px; background: rgba(10,15,40,0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: rgba(200,222,255,0.7); border: 1px solid rgba(155,246,255,0.1); white-space: nowrap; opacity: 0; transform: translateX(10px); transition: all 0.3s ease; pointer-events: none; font-family: 'Poppins','Segoe UI',sans-serif; }
+        .float-up-btn:hover .tooltip { opacity: 1; transform: translateX(0); }
 
-        .resource-card {
-            background: rgba(15, 20, 50, 0.4);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 28px;
-            padding: 26px 24px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
+        .footer-links { position: relative; z-index: 1; text-align: center; padding: 18px 0 30px; color: rgba(150,180,220,0.2); font-size: 15px; letter-spacing: 0.5px; }
+        .footer-links span { margin: 0 10px; cursor: pointer; transition: 0.25s; color: rgba(150,180,220,0.2); }
+        .footer-links span:hover { color: rgba(200,225,255,0.5); text-shadow: 0 0 20px rgba(100,180,255,0.1); }
 
-        .resource-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, 
-                rgba(155, 246, 255, 0.05), 
-                rgba(189, 178, 255, 0.05), 
-                rgba(255, 198, 255, 0.05),
-                rgba(155, 246, 255, 0.05)
-            );
-            background-size: 300% 300%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: -1;
-            animation: borderGlow 4s ease-in-out infinite;
-        }
+        /* ===== SKELETON LOADING ===== */
+        .skeleton-card { background: rgba(15,20,50,0.3); border-radius: 28px; padding: 26px 24px; border: 1px solid rgba(255,255,255,0.04); backdrop-filter: blur(8px); height: 220px; position: relative; overflow: hidden; }
+        .skeleton-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent); animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .skeleton-breadcrumb { display: flex; gap: 8px; margin-bottom: 12px; }
+        .skeleton-breadcrumb span { display: inline-block; height: 24px; width: 60px; background: rgba(255,255,255,0.05); border-radius: 12px; }
+        .skeleton-title { height: 28px; width: 80%; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; }
+        .skeleton-chapter { height: 18px; width: 60%; background: rgba(255,255,255,0.04); border-radius: 8px; margin-bottom: 16px; }
+        .skeleton-links { display: flex; gap: 10px; }
+        .skeleton-links span { height: 36px; width: 100px; background: rgba(255,255,255,0.04); border-radius: 20px; }
 
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        .status-message { grid-column: 1/-1; text-align: center; padding: 16px; border-radius: 12px; font-size: 13px; font-family: 'Poppins', sans-serif; }
+        .status-message.info { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.15); color: rgba(100,180,255,0.8); }
+        .status-message.error { background: rgba(255,100,100,0.08); border: 1px solid rgba(255,100,100,0.15); color: rgba(255,150,150,0.8); }
+        .status-message.success { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.15); color: rgba(52,211,153,0.8); }
 
-        .resource-card:hover::before {
-            opacity: 1;
-        }
-
-        .resource-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(155, 246, 255, 0.03), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.6s;
-            pointer-events: none;
-        }
-
-        .resource-card:hover::after {
-            opacity: 1;
-        }
-
-        .resource-card:hover {
-            background: rgba(20, 25, 60, 0.6);
-            border-color: rgba(155, 246, 255, 0.12);
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 
-                0 20px 80px rgba(74, 124, 247, 0.08),
-                0 0 60px rgba(155, 246, 255, 0.03);
-        }
-
-        .resource-breadcrumb {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 10px;
-            margin-bottom: 12px;
-        }
-
-        .resource-breadcrumb span {
-            display: inline-block;
-            padding: 3px 14px;
+        .file-upload-area {
+            margin: 10px auto 20px;
+            text-align: center;
+            padding: 12px;
+            border: 1px dashed rgba(255,255,255,0.1);
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            color: rgba(180, 210, 255, 0.5);
-            font-weight: 600;
-            font-size: 11px;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            letter-spacing: 0.3px;
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(8px);
         }
-
-        .resource-breadcrumb .board-tag {
-            background: rgba(74, 124, 247, 0.12);
-            border-color: rgba(74, 124, 247, 0.08);
-            color: #7fb3ff;
-        }
-
-        .resource-breadcrumb .class-tag {
-            background: rgba(255, 198, 255, 0.08);
-            border-color: rgba(255, 198, 255, 0.08);
-            color: #ffc6ff;
-        }
-
-        .resource-breadcrumb .subject-tag {
-            background: rgba(155, 246, 255, 0.08);
-            border-color: rgba(155, 246, 255, 0.08);
-            color: #9bf6ff;
-        }
-
-        .resource-breadcrumb .lang-tag {
-            background: rgba(255, 215, 0, 0.06);
-            border-color: rgba(255, 215, 0, 0.08);
-            color: #ffd700;
-        }
-
-        .resource-breadcrumb .channel-tag {
-            background: rgba(255, 100, 200, 0.08);
-            border-color: rgba(255, 100, 200, 0.08);
-            color: #ff6b9d;
-        }
-
-        .resource-card h4 {
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            margin-bottom: 3px;
-            letter-spacing: -0.3px;
-        }
-
-        .resource-card .chapter-name {
-            color: rgba(180, 210, 255, 0.4);
-            font-size: 14px;
-            font-weight: 400;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 16px;
-            letter-spacing: 0.3px;
-        }
-
-        .resource-card .chapter-name .chapter-icon {
-            margin-right: 4px;
-        }
-
-        .resource-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .resource-link {
+        .file-upload-area label {
+            color: rgba(180,210,255,0.5);
+            font-size: 13px;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 18px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            letter-spacing: 0.3px;
-        }
-
-        .resource-link.youtube {
-            background: rgba(255, 0, 0, 0.06);
-            border: 1px solid rgba(255, 0, 0, 0.1);
-            color: #ff6b6b;
-        }
-
-        .resource-link.youtube:hover {
-            background: rgba(255, 0, 0, 0.12);
-            border-color: rgba(255, 0, 0, 0.25);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.1);
-        }
-
-        .resource-link.pdf {
-            background: rgba(255, 215, 0, 0.06);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            color: #ffd700;
-        }
-
-        .resource-link.pdf:hover {
-            background: rgba(255, 215, 0, 0.12);
-            border-color: rgba(255, 215, 0, 0.25);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.1);
-        }
-
-        .resource-link.notes {
-            background: rgba(155, 246, 255, 0.06);
-            border: 1px solid rgba(155, 246, 255, 0.1);
-            color: #9bf6ff;
-        }
-
-        .resource-link.notes:hover {
-            background: rgba(155, 246, 255, 0.12);
-            border-color: rgba(155, 246, 255, 0.25);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(155, 246, 255, 0.1);
-        }
-
-        .resource-link.sample {
-            background: rgba(189, 178, 255, 0.06);
-            border: 1px solid rgba(189, 178, 255, 0.1);
-            color: #bdb2ff;
-        }
-
-        .resource-link.sample:hover {
-            background: rgba(189, 178, 255, 0.12);
-            border-color: rgba(189, 178, 255, 0.25);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 30px rgba(189, 178, 255, 0.1);
-        }
-
-        .resource-glow-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 10px;
-            padding: 4px 12px;
+            gap: 8px;
+            padding: 6px 16px;
             border-radius: 20px;
-            background: rgba(155, 246, 255, 0.05);
-            border: 1px solid rgba(155, 246, 255, 0.04);
-            color: rgba(155, 246, 255, 0.2);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            font-family: 'Poppins', sans-serif;
+            background: rgba(74,124,247,0.08);
+            border: 1px solid rgba(74,124,247,0.1);
+            transition: all 0.3s;
         }
+        .file-upload-area label:hover {
+            background: rgba(74,124,247,0.15);
+            border-color: rgba(74,124,247,0.25);
+            color: #fff;
+        }
+        .file-upload-area input[type="file"] { display: none; }
+        .file-upload-area .file-name { font-size: 12px; color: rgba(180,210,255,0.3); margin-left: 8px; }
 
-        /* ===== NO RESULTS ===== */
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: rgba(180, 210, 255, 0.3);
-        }
-
-        .no-results .big-icon {
-            font-size: 64px;
-            display: block;
-            margin-bottom: 16px;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .no-results h4 {
-            color: rgba(180, 210, 255, 0.5);
-            font-size: 22px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .no-results p {
-            font-size: 14px;
-            margin-top: 4px;
-            font-family: 'Poppins', sans-serif;
-            color: rgba(180, 210, 255, 0.2);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .library-title { font-size: 32px; }
-            .search-confirm-block { flex-direction: column; align-items: stretch; padding: 16px 18px; }
-            .search-group { min-width: 100%; }
-            .resource-grid { grid-template-columns: 1fr; }
-            .resource-card { padding: 20px 18px; }
-            .buttons-row { justify-content: center; }
-            .btn-action { font-size: 13px; padding: 8px 18px; }
-            .btn-confirm { width: 100%; justify-content: center; }
-            .heart-message { padding: 16px 20px; }
-            .heart-message .msg-text { font-size: 16px; }
-        }
-
-        @media (max-width: 520px) {
-            .library-title { font-size: 26px; }
-            .library-subtitle { font-size: 14px; }
-            .resource-breadcrumb span { font-size: 10px; padding: 2px 10px; }
-            .resource-card h4 { font-size: 17px; }
-            .resource-link { font-size: 12px; padding: 6px 14px; }
-            .search-group select { padding: 8px 12px; font-size: 13px; }
-            .heart-message .msg-text { font-size: 14px; }
-            .heart-message .heart-icon { font-size: 24px; }
-            .btn-confirm { font-size: 13px; padding: 8px 20px; }
-        }
+        @media (max-width: 820px) { .header { flex-direction: column; height: auto; padding: 14px 22px; border-radius: 40px; margin: 12px 16px; } .logo { font-size: 22px; } .logo-group { align-items: center; } .nav-menu { gap: 4px; flex-wrap: wrap; justify-content: center; } .nav-menu li { font-size: 15px; padding: 6px 14px; } .ceo-container { padding: 18px 30px; } .ceo-name { font-size: 26px; } .ceo-crown { font-size: 32px; } .ceo-sparkle { font-size: 24px; } }
+        @media (max-width: 768px) { .library-title { font-size: 32px; } .search-filter-block { flex-direction: column; align-items: stretch; padding: 16px 18px; } .search-group { min-width: 100%; } .resource-grid { grid-template-columns: 1fr; } .resource-card { padding: 20px 18px; } .buttons-row { justify-content: center; } .btn-action { font-size: 13px; padding: 8px 18px; } .heart-message { padding: 16px 20px; } .heart-message .msg-text { font-size: 16px; } .float-up-btn { width: 50px; height: 50px; font-size: 22px; bottom: 24px; right: 24px; } .float-up-btn .tooltip { right: 60px; font-size: 11px; padding: 4px 12px; } }
+        @media (max-width: 600px) { .ceo-container { padding: 14px 20px; max-width: 100%; } .ceo-name { font-size: 22px; } .ceo-label { font-size: 10px; letter-spacing: 2px; } .ceo-crown { font-size: 26px; } .ceo-sparkle { font-size: 20px; } .ceo-content { gap: 12px; } }
+        @media (max-width: 520px) { .library-title { font-size: 26px; } .library-subtitle { font-size: 14px; } .resource-breadcrumb span { font-size: 10px; padding: 2px 10px; } .resource-card h4 { font-size: 17px; } .resource-link { font-size: 12px; padding: 6px 14px; } .search-group select { padding: 8px 12px; font-size: 13px; } .search-group input { padding: 8px 12px; font-size: 13px; } .heart-message .msg-text { font-size: 14px; } .heart-message .heart-icon { font-size: 24px; } .ceo-name { font-size: 18px; } .ceo-container { padding: 12px 16px; border-radius: 30px; } .ceo-label { font-size: 9px; letter-spacing: 1.5px; } .float-up-btn { width: 44px; height: 44px; font-size: 18px; bottom: 18px; right: 18px; } }
     </style>
 </head>
 <body>
@@ -651,9 +206,7 @@
     <header class="header">
         <div class="logo-wrapper">
             <span class="logo-icon">📖</span>
-            <div class="logo-group">
-                <span class="logo">Studies Made Easy</span>
-            </div>
+            <div class="logo-group"><span class="logo">Studies Made Easy</span></div>
         </div>
         <ul class="nav-menu">
             <li onclick="window.location.href='index.html'">🏠 Home</li>
@@ -662,7 +215,6 @@
         </ul>
     </header>
 
-    <!-- ===== CEO BLOCK ===== -->
     <div class="ceo-wrapper">
         <div class="ceo-container">
             <div class="ceo-shine"></div>
@@ -678,23 +230,21 @@
         </div>
     </div>
 
-    <!-- ===== RESOURCE LIBRARY ===== -->
     <section class="resource-library">
-        <!-- ===== 3 BUTTONS ROW ===== -->
         <div class="buttons-row">
-            <button class="btn-action back" onclick="history.back()">
-                ← Go Back
-            </button>
-            <button class="btn-action home" onclick="window.location.href='index.html'">
-                🏠 Go to Home
-            </button>
-            <button class="btn-action" onclick="window.location.href='index.html#landmark-section'">
-                🔄 Change Portal
-            </button>
+            <button class="btn-action back" onclick="history.back()">← Go Back</button>
+            <button class="btn-action home" onclick="window.location.href='index.html'">🏠 Go to Home</button>
+            <button class="btn-action" onclick="window.location.href='index.html#exams'">🔄 Change Portal</button>
         </div>
 
-        <!-- ===== SEARCH + CONFIRM BLOCK (Only Language, Class, Subject, Channel) ===== -->
-        <div class="search-confirm-block">
+        <!-- File Upload Area -->
+        <div class="file-upload-area">
+            <label for="csvUpload">📂 Upload CSV file</label>
+            <input type="file" id="csvUpload" accept=".csv" />
+            <span class="file-name" id="fileName">(or use Google Sheet data)</span>
+        </div>
+
+        <div class="search-filter-block">
             <div class="search-group">
                 <label>🌍 Language</label>
                 <select id="filterLanguage">
@@ -705,7 +255,6 @@
                     <option value="telugu">Telugu</option>
                 </select>
             </div>
-
             <div class="search-group">
                 <label>📖 Class</label>
                 <select id="filterClass">
@@ -719,7 +268,6 @@
                     <option value="12">Class 12</option>
                 </select>
             </div>
-
             <div class="search-group">
                 <label>📘 Subject</label>
                 <select id="filterSubject">
@@ -732,12 +280,12 @@
                     <option value="computers">Computer Science</option>
                 </select>
             </div>
-
             <div class="search-group">
                 <label>📺 Channel</label>
                 <select id="filterChannel">
                     <option value="all">All Channels</option>
                     <option value="vedantu">Vedantu</option>
+                    <option value="vedanty">Vedanty</option>
                     <option value="physicswallah">Physics Wallah</option>
                     <option value="byjus">BYJU'S</option>
                     <option value="unacademy">Unacademy</option>
@@ -746,339 +294,407 @@
                     <option value="khanacademy">Khan Academy</option>
                 </select>
             </div>
-
+            <div class="search-group">
+                <label>📅 Year</label>
+                <select id="filterYear">
+                    <option value="all">All Years</option>
+                    <option value="2016-2017">2016-2017</option>
+                    <option value="2017-2018">2017-2018</option>
+                    <option value="2018-2019">2018-2019</option>
+                    <option value="2019-2020">2019-2020</option>
+                    <option value="2020-2021">2020-2021</option>
+                    <option value="2021-2022">2021-2022</option>
+                    <option value="2022-2023">2022-2023</option>
+                    <option value="2023-2024">2023-2024</option>
+                    <option value="2024-2025">2024-2025</option>
+                    <option value="2025-2026">2025-2026</option>
+                </select>
+            </div>
             <div class="search-group">
                 <label>📂 Chapter Name</label>
-                <input type="text" id="filterChapter" placeholder="Type chapter name..." style="padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.03); color: #e8eeff; font-size: 14px; font-weight: 500; font-family: 'Segoe UI', 'Poppins', sans-serif; transition: all 0.3s ease; outline: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); width: 100%;" placeholder="Type chapter name..." />
+                <input type="text" id="filterChapter" placeholder="Type chapter name..." />
             </div>
-
-            <button class="btn-confirm" onclick="filterResources()">
-                🔍 Take Me There <span class="arrow">→</span>
-            </button>
         </div>
 
         <div class="library-header">
-            <h1 class="library-title">
-                <span class="sparkle">✨</span> Study Resource Library <span class="sparkle">✨</span>
-            </h1>
-            <p class="library-subtitle">
-                Find the perfect study material — curated just for you by 
-                <span class="highlight-sub">T.J.M Najiba</span> 💕
-            </p>
+            <h1 class="library-title"><span class="sparkle">✨</span> Study Resource Library <span class="sparkle">✨</span></h1>
+            <p class="library-subtitle">Find the perfect study material — curated just for you by <span class="highlight-sub">T.J.M Najiba</span> 💕</p>
         </div>
 
-        <!-- ===== HEART TOUCHING MESSAGE BLOCK ===== -->
         <div class="heart-message">
             <span class="heart-icon">💖</span>
-            <span class="msg-text">
-                Every resource here is made with love, just for you 
-                <span class="glow-dots">✦</span>
-            </span>
+            <span class="msg-text">Every resource here is made with love, just for you <span class="glow-dots">✦</span></span>
             <span class="msg-sub">— The ultimate place to find the perfect study material 💫</span>
         </div>
 
-        <!-- ===== RESOURCE CARDS ===== -->
         <div id="resourceContainer" class="resource-grid">
             <!-- Resources will be rendered by JavaScript -->
         </div>
     </section>
 
-    <!-- ===== FOOTER - Darker ===== -->
-    <div class="footer-links" style="border-top: 1px solid rgba(255, 255, 255, 0.02); padding-top: 20px;">
-        <span onclick="window.location.href='index.html'" style="color: rgba(150, 180, 220, 0.15);">🏠 Home</span>
-        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
-        <span style="color: rgba(150, 180, 220, 0.15);">ℹ️ About</span>
-        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
-        <span style="color: rgba(150, 180, 220, 0.15);">📞 Contact</span>
-        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
-        <span style="color: rgba(150, 180, 220, 0.12);">📧 xyz@gmail.com</span>
-        <span style="color: rgba(150, 180, 220, 0.1);">•</span>
-        <span style="color: rgba(150, 180, 220, 0.1);">📱 +91 12345 67890</span>
+    <button id="floatUpBtn" class="float-up-btn" title="Take Me Up">
+        <span class="tooltip">⬆ Take Me Up</span>
+        <span class="arrow-up">↑</span>
+    </button>
+
+    <div class="footer-links" style="border-top:1px solid rgba(255,255,255,0.02);padding-top:20px;">
+        <span onclick="window.location.href='index.html'">🏠 Home</span>
+        <span>•</span>
+        <span>ℹ️ About</span>
+        <span>•</span>
+        <span>📞 Contact</span>
+        <span>•</span>
+        <span>📧 xyz@gmail.com</span>
+        <span>•</span>
+        <span>📱 +91 12345 67890</span>
     </div>
 
     <script>
-        // ===== RESOURCE DATA =====
-        const resources = [
-            // ===== CBSE - Class 10 - Mathematics =====
-            {
-                language: 'english',
-                channel: 'physicswallah',
-                class: '10',
-                subject: 'math',
-                chapter: 'Quadratic Equations',
-                title: 'Quadratic Equations - Full Chapter',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example1' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-            {
-                language: 'english',
-                channel: 'vedantu',
-                class: '10',
-                subject: 'math',
-                chapter: 'Trigonometry',
-                title: 'Trigonometry - Complete Guide',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example2' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
-                ]
-            },
-            {
-                language: 'hindi',
-                channel: 'byjus',
-                class: '10',
-                subject: 'math',
-                chapter: 'Real Numbers',
-                title: 'Real Numbers - Full Chapter',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example3' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
+        // ====================================================================
+        //  CONFIGURATION
+        // ====================================================================
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTWGmUd6fVE3PA7NRPCINzMnjakTAaTzZwxYUsUCQsjaJkcaeol-33tnH7Ui0W7eKjIQTJp0xIdLbJD/pub?output=csv';
+        const LOCAL_CSV = 'resources.csv';
 
-            // ===== CBSE - Class 12 - Physics =====
-            {
-                language: 'english',
-                channel: 'unacademy',
-                class: '12',
-                subject: 'physics',
-                chapter: 'Electrostatics',
-                title: 'Electrostatics - Complete Guide',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example4' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-            {
-                language: 'english',
-                channel: 'magnetbrains',
-                class: '12',
-                subject: 'physics',
-                chapter: 'Magnetism',
-                title: 'Magnetism - Full Chapter',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example5' },
-                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
-                ]
-            },
+        let allResources = [];
+        let container = document.getElementById('resourceContainer');
 
-            // ===== ICSE - Class 10 - Chemistry =====
-            {
-                language: 'english',
-                channel: 'learnohub',
-                class: '10',
-                subject: 'chemistry',
-                chapter: 'Chemical Bonding',
-                title: 'Chemical Bonding - Complete Guide',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example6' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-            {
-                language: 'english',
-                channel: 'khanacademy',
-                class: '10',
-                subject: 'chemistry',
-                chapter: 'Acids Bases & Salts',
-                title: 'Acids, Bases & Salts - Full Chapter',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example7' },
-                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
-                ]
-            },
+        // ====================================================================
+        //  SKELETON LOADING
+        // ====================================================================
+        function showSkeleton() {
+            const skeletonCards = Array(6).fill(0).map(() => `
+                <div class="skeleton-card">
+                    <div class="skeleton-breadcrumb"><span></span><span></span><span></span><span></span><span></span></div>
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-chapter"></div>
+                    <div class="skeleton-links"><span></span><span></span></div>
+                </div>
+            `).join('');
+            container.innerHTML = skeletonCards;
+        }
 
-            // ===== JEE - Class 11 - Physics =====
-            {
-                language: 'english',
-                channel: 'physicswallah',
-                class: '11',
-                subject: 'physics',
-                chapter: 'Kinematics',
-                title: 'Kinematics - JEE Level',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example8' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-            {
-                language: 'english',
-                channel: 'unacademy',
-                class: '12',
-                subject: 'physics',
-                chapter: 'Optics',
-                title: 'Optics - JEE Advanced Level',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example9' },
-                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
-                ]
-            },
+        // ====================================================================
+        //  PARSE CSV (robust)
+        // ====================================================================
+        function parseCSV(csvText) {
+            if (csvText.charCodeAt(0) === 0xFEFF) csvText = csvText.slice(1);
+            const rows = [];
+            let currentRow = [], currentField = '', insideQuotes = false;
+            for (let i = 0; i < csvText.length; i++) {
+                const ch = csvText[i];
+                if (insideQuotes) {
+                    if (ch === '"' && i + 1 < csvText.length && csvText[i + 1] === '"') {
+                        currentField += '"';
+                        i++;
+                    } else if (ch === '"') {
+                        insideQuotes = false;
+                    } else {
+                        currentField += ch;
+                    }
+                } else {
+                    if (ch === '"') {
+                        insideQuotes = true;
+                    } else if (ch === ',') {
+                        currentRow.push(currentField.trim());
+                        currentField = '';
+                    } else if (ch === '\n') {
+                        currentRow.push(currentField.trim());
+                        if (currentRow.some(cell => cell !== '')) rows.push(currentRow);
+                        currentRow = [];
+                        currentField = '';
+                    } else if (ch !== '\r') {
+                        currentField += ch;
+                    }
+                }
+            }
+            currentRow.push(currentField.trim());
+            if (currentRow.some(cell => cell !== '')) rows.push(currentRow);
 
-            // ===== NEET - Class 12 - Biology =====
-            {
-                language: 'english',
-                channel: 'byjus',
-                class: '12',
-                subject: 'biology',
-                chapter: 'Genetics',
-                title: 'Genetics - NEET Level',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example10' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-            {
-                language: 'english',
-                channel: 'vedantu',
-                class: '12',
-                subject: 'biology',
-                chapter: 'Ecology',
-                title: 'Ecology - Full Chapter',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example11' },
-                    { type: 'sample', label: '📝 Sample Paper', url: '#' },
-                ]
-            },
+            if (rows.length < 2) return [];
+            const headers = rows[0].map(h => h.toLowerCase().trim());
+            const data = [];
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                if (row.length !== headers.length) continue;
+                const obj = {};
+                headers.forEach((h, idx) => { obj[h] = row[idx] ? row[idx].trim() : ''; });
+                if (obj.title && obj.title.length > 0) data.push(obj);
+            }
+            return data;
+        }
 
-            // ===== State Boards - Class 10 - Mathematics =====
-            {
-                language: 'tamil',
-                channel: 'magnetbrains',
-                class: '10',
-                subject: 'math',
-                chapter: 'Algebra',
-                title: 'Algebra - State Board Tamil Medium',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example12' },
-                    { type: 'pdf', label: '📄 Download PDF', url: '#' },
-                ]
-            },
-            {
-                language: 'telugu',
-                channel: 'learnohub',
-                class: '10',
-                subject: 'math',
-                chapter: 'Geometry',
-                title: 'Geometry - State Board Telugu Medium',
-                links: [
-                    { type: 'youtube', label: '📺 Watch Lecture', url: 'https://www.youtube.com/watch?v=example13' },
-                    { type: 'notes', label: '📝 Notes', url: '#' },
-                ]
-            },
-        ];
+        // ====================================================================
+        //  NORMALIZE / RENDER / FILTER
+        // ====================================================================
+        function normalizeResource(row) {
+            return {
+                language: (row.language || 'english').toLowerCase().trim(),
+                channel: (row.channel || 'vedantu').toLowerCase().trim(),
+                board: (row.board || 'cbse').toLowerCase().trim(),
+                class: (row.class || '10').toString().trim(),
+                subject: (row.subject || 'math').toLowerCase().trim(),
+                chapter: row.chapter || 'Chapter',
+                title: row.title || 'Untitled Resource',
+                year: row.year || '2024-2025',
+                links: parseLinkString(row.link_url, row.link_type, row.link_label)
+            };
+        }
 
-        // ===== RENDER RESOURCES =====
+        function parseLinkString(url, type = 'youtube', label = '') {
+            if (!url || url.trim().length === 0) {
+                return [{ type: 'youtube', label: 'View Resource', url: '#' }];
+            }
+            return [{
+                type: (type || 'youtube').toLowerCase().trim(),
+                label: label || getDefaultLabel(type),
+                url: url.trim()
+            }];
+        }
+
+        function getDefaultLabel(type) {
+            const labels = { 'youtube': '📺 Watch', 'video': '📺 Watch', 'pdf': '📄 Download', 'document': '📄 Download', 'notes': '📝 Notes', 'sample': '📝 Sample' };
+            return labels[type.toLowerCase()] || '🔗 Open';
+        }
+
         function renderResources(data) {
-            const container = document.getElementById('resourceContainer');
-            
-            if (data.length === 0) {
+            if (!data || data.length === 0) {
                 container.innerHTML = `
-                    <div class="no-results">
-                        <span class="big-icon">🔍</span>
+                    <div class="no-results" style="grid-column:1/-1;">
+                        <span class="big-icon">📂</span>
                         <h4>No resources found</h4>
-                        <p>Try adjusting your filters or search for something else ✨</p>
+                        <p>Try adjusting your filters or upload a CSV with data.</p>
                     </div>
                 `;
                 return;
             }
 
-            container.innerHTML = data.map((res, index) => {
-                const subjectLabels = {
-                    math: 'Mathematics',
-                    physics: 'Physics',
-                    chemistry: 'Chemistry',
-                    biology: 'Biology',
-                    english: 'English',
-                    computers: 'Computer Science'
-                };
+            const boardLabels = { cbse: 'CBSE', icse: 'ICSE', state: 'State Board', jee: 'JEE', neet: 'NEET' };
+            const subjectLabels = { math: 'Mathematics', physics: 'Physics', chemistry: 'Chemistry', biology: 'Biology', english: 'English', computers: 'Computer Science' };
+            const channelLabels = { vedantu: 'Vedantu', vedanty: 'Vedanty', physicswallah: 'Physics Wallah', byjus: "BYJU'S", unacademy: 'Unacademy', magnetbrains: 'Magnet Brains', learnohub: 'Learnohub', khanacademy: 'Khan Academy' };
+            const linkClasses = { youtube: 'youtube', video: 'youtube', pdf: 'pdf', document: 'pdf', notes: 'notes', sample: 'sample' };
 
-                const channelLabels = {
-                    vedantu: 'Vedantu',
-                    physicswallah: 'Physics Wallah',
-                    byjus: "BYJU'S",
-                    unacademy: 'Unacademy',
-                    magnetbrains: 'Magnet Brains',
-                    learnohub: 'Learnohub',
-                    khanacademy: 'Khan Academy'
-                };
+            let html = '';
+            for (let i = 0; i < data.length; i++) {
+                const res = data[i];
+                const boardTag = boardLabels[res.board] || res.board.toUpperCase();
+                const classTag = `Class ${res.class}`;
+                const subjectTag = subjectLabels[res.subject] || res.subject;
+                const langTag = `🌍 ${res.language.charAt(0).toUpperCase()}${res.language.slice(1)}`;
+                const channelTag = `📺 ${channelLabels[res.channel] || res.channel}`;
+                const yearTag = `📅 ${res.year}`;
 
-                const linkClasses = {
-                    youtube: 'youtube',
-                    pdf: 'pdf',
-                    notes: 'notes',
-                    sample: 'sample'
-                };
+                let linksHTML = '';
+                if (res.links && res.links.length > 0) {
+                    linksHTML = res.links.map(link => {
+                        const linkClass = linkClasses[link.type] || 'youtube';
+                        return `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="resource-link ${linkClass}">${link.label}</a>`;
+                    }).join('');
+                } else {
+                    linksHTML = `<span style="color:rgba(180,210,255,0.3); font-size:13px;">No link available</span>`;
+                }
 
-                return `
+                html += `
                     <div class="resource-card">
-                        <span class="resource-glow-badge">✦ #${index + 1}</span>
+                        <span class="resource-glow-badge">✦ #${i + 1}</span>
                         <div class="resource-breadcrumb">
-                            <span class="board-tag">${res.board ? res.board.toUpperCase() : 'General'}</span>
-                            <span class="class-tag">Class ${res.class}</span>
-                            <span class="subject-tag">${subjectLabels[res.subject] || res.subject}</span>
-                            <span class="lang-tag">🌍 ${res.language.charAt(0).toUpperCase() + res.language.slice(1)}</span>
-                            <span class="channel-tag">📺 ${channelLabels[res.channel] || res.channel}</span>
+                            <span class="board-tag">${boardTag}</span>
+                            <span class="class-tag">${classTag}</span>
+                            <span class="subject-tag">${subjectTag}</span>
+                            <span class="lang-tag">${langTag}</span>
+                            <span class="channel-tag">${channelTag}</span>
+                            <span class="year-tag">${yearTag}</span>
                         </div>
                         <h4>${res.title}</h4>
                         <div class="chapter-name"><span class="chapter-icon">📂</span> ${res.chapter}</div>
-                        <div class="resource-links">
-                            ${res.links.map(link => `
-                                <a href="${link.url}" target="_blank" class="resource-link ${linkClasses[link.type]}">
-                                    ${link.label}
-                                </a>
-                            `).join('')}
-                        </div>
+                        <div class="resource-links">${linksHTML}</div>
                     </div>
                 `;
-            }).join('');
+            }
+            container.innerHTML = html;
         }
 
-        // ===== FILTER FUNCTION =====
         function filterResources() {
+            if (allResources.length === 0) return;
             const language = document.getElementById('filterLanguage').value;
             const cls = document.getElementById('filterClass').value;
             const subject = document.getElementById('filterSubject').value;
             const channel = document.getElementById('filterChannel').value;
-            const chapterQuery = document.getElementById('filterChapter').value.toLowerCase();
+            const year = document.getElementById('filterYear').value;
+            const chapterQuery = document.getElementById('filterChapter').value.toLowerCase().trim();
 
-            const filtered = resources.filter(res => {
-                const matchLanguage = language === 'all' || res.language === language;
-                const matchClass = cls === 'all' || res.class === cls;
-                const matchSubject = subject === 'all' || res.subject === subject;
-                const matchChannel = channel === 'all' || res.channel === channel;
-                const matchChapter = res.chapter.toLowerCase().includes(chapterQuery);
-                return matchLanguage && matchClass && matchSubject && matchChannel && matchChapter;
+            const filtered = allResources.filter(res => {
+                const langMatch = language === 'all' || res.language === language.toLowerCase();
+                const classMatch = cls === 'all' || res.class === cls;
+                const subjectMatch = subject === 'all' || res.subject === subject.toLowerCase();
+                const channelMatch = channel === 'all' || res.channel === channel.toLowerCase();
+                const yearMatch = year === 'all' || res.year === year;
+                const chapterMatch = chapterQuery === '' || res.chapter.toLowerCase().includes(chapterQuery);
+                return langMatch && classMatch && subjectMatch && channelMatch && yearMatch && chapterMatch;
             });
-
             renderResources(filtered);
         }
 
-        // ===== EVENT LISTENERS =====
+        // ====================================================================
+        //  LOAD STRATEGIES
+        // ====================================================================
+
+        // 1) Load from Google Sheets
+        async function loadFromGoogleSheets() {
+            try {
+                console.log('📡 Fetching from Google Sheets...');
+                const response = await fetch(SHEET_URL, {
+                    method: 'GET',
+                    cache: 'no-store',
+                    headers: { 'Accept': 'text/csv' }
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const csvText = await response.text();
+                if (!csvText || csvText.trim().length === 0) throw new Error('Empty CSV');
+                const parsed = parseCSV(csvText);
+                if (parsed.length === 0) throw new Error('No valid resources');
+                allResources = parsed.map(normalizeResource);
+                console.log(`✅ Loaded ${allResources.length} resources from Google Sheets.`);
+                renderResources(allResources);
+                filterResources();
+                // Remove any status messages
+                const status = container.querySelector('.status-message');
+                if (status) status.remove();
+                return true;
+            } catch (err) {
+                console.warn('Google Sheets load failed:', err.message);
+                return false;
+            }
+        }
+
+        // 2) Load from local CSV (if served via http)
+        async function loadFromLocalCSV() {
+            try {
+                console.log('📂 Trying local CSV:', LOCAL_CSV);
+                const response = await fetch(LOCAL_CSV, { method: 'GET', cache: 'no-store' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const csvText = await response.text();
+                if (!csvText || csvText.trim().length === 0) throw new Error('Empty CSV');
+                const parsed = parseCSV(csvText);
+                if (parsed.length === 0) throw new Error('No valid resources');
+                allResources = parsed.map(normalizeResource);
+                console.log(`✅ Loaded ${allResources.length} resources from local CSV.`);
+                renderResources(allResources);
+                filterResources();
+                const status = container.querySelector('.status-message');
+                if (status) status.remove();
+                return true;
+            } catch (err) {
+                console.warn('Local CSV load failed:', err.message);
+                return false;
+            }
+        }
+
+        // 3) Show upload prompt with fallback data
+        function showUploadPrompt() {
+            // Show a friendly message with upload button
+            container.innerHTML = `
+                <div class="status-message info" style="grid-column:1/-1; text-align:center; padding:30px;">
+                    <span style="font-size:40px; display:block; margin-bottom:10px;">📤</span>
+                    <strong>No data loaded yet.</strong><br>
+                    <span style="font-size:13px; opacity:0.7;">
+                        Upload a CSV file using the button above, or<br>
+                        <button onclick="loadFallbackData()" style="background:rgba(74,124,247,0.2); border:1px solid rgba(74,124,247,0.3); color:#7fb3ff; padding:6px 18px; border-radius:20px; cursor:pointer; margin-top:8px; font-size:13px;">
+                            📋 Load Sample Data
+                        </button>
+                    </span>
+                </div>
+            `;
+        }
+
+        // 4) Fallback embedded data (minimal but works)
+        function loadFallbackData() {
+            const fallbackCSV = `
+language,channel,board,class,subject,chapter,title,year,link_type,link_label,link_url
+Tamil,vedantu,cbse,12,math,Trigonometry,Sample Resource 1,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
+English,physicswallah,cbse,12,physics,Electrostatics,Sample Resource 2,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
+            `.trim();
+            const parsed = parseCSV(fallbackCSV);
+            if (parsed.length === 0) {
+                container.innerHTML = `<div class="status-message error" style="grid-column:1/-1;">Fallback data is empty.</div>`;
+                return;
+            }
+            allResources = parsed.map(normalizeResource);
+            renderResources(allResources);
+            filterResources();
+            const status = container.querySelector('.status-message');
+            if (status) status.remove();
+            // Update file name display
+            document.getElementById('fileName').textContent = '📋 Using sample data';
+        }
+
+        // ====================================================================
+        //  MAIN LOAD SEQUENCE
+        // ====================================================================
+        async function loadResources() {
+            showSkeleton();
+
+            // Try Google Sheets first
+            const gsSuccess = await loadFromGoogleSheets();
+            if (gsSuccess) return;
+
+            // If Google Sheets fails, try local CSV
+            const localSuccess = await loadFromLocalCSV();
+            if (localSuccess) return;
+
+            // If both fail, show upload prompt
+            showUploadPrompt();
+        }
+
+        // ====================================================================
+        //  FILE UPLOAD HANDLER
+        // ====================================================================
+        document.getElementById('csvUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                try {
+                    const csvText = ev.target.result;
+                    const parsed = parseCSV(csvText);
+                    if (parsed.length === 0) throw new Error('No valid data');
+                    allResources = parsed.map(normalizeResource);
+                    renderResources(allResources);
+                    filterResources();
+                    document.getElementById('fileName').textContent = `✅ Loaded ${file.name}`;
+                    const status = container.querySelector('.status-message');
+                    if (status) status.remove();
+                } catch (err) {
+                    alert('Error loading CSV: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        // ====================================================================
+        //  EVENT LISTENERS FOR FILTERS
+        // ====================================================================
         document.getElementById('filterLanguage').addEventListener('change', filterResources);
         document.getElementById('filterClass').addEventListener('change', filterResources);
         document.getElementById('filterSubject').addEventListener('change', filterResources);
         document.getElementById('filterChannel').addEventListener('change', filterResources);
-        document.getElementById('filterChapter').addEventListener('input', filterResources);
+        document.getElementById('filterYear').addEventListener('change', filterResources);
 
-        // ===== INITIAL RENDER =====
-        renderResources(resources);
+        let filterTimer;
+        document.getElementById('filterChapter').addEventListener('input', function() {
+            clearTimeout(filterTimer);
+            filterTimer = setTimeout(filterResources, 300);
+        });
 
-        // ===== CANVAS BACKGROUND =====
+        // ====================================================================
+        //  INIT
+        // ====================================================================
         window.addEventListener('load', function() {
+            // Canvas background
             const canvas = document.getElementById('bg');
             const ctx = canvas.getContext('2d');
             let W, H;
-            function resize() {
-                W = canvas.width = window.innerWidth;
-                H = canvas.height = window.innerHeight;
-            }
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
             window.addEventListener('resize', resize);
             resize();
 
@@ -1125,61 +741,54 @@
                     if (o.x < 0 || o.x > W) o.vx *= -1;
                     if (o.y < 0 || o.y > H) o.vy *= -1;
                     const g = ctx.createRadialGradient(o.x - o.r * 0.2, o.y - o.r * 0.2, 0, o.x, o.y, o.r);
-                    g.addColorStop(0, `hsla(${o.hue}, 85%, 80%, 0.25)`);
-                    g.addColorStop(0.5, `hsla(${o.hue}, 75%, 55%, 0.10)`);
-                    g.addColorStop(1, `hsla(${o.hue}, 70%, 30%, 0)`);
-                    ctx.beginPath();
-                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-                    ctx.fillStyle = g;
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-                    ctx.strokeStyle = `hsla(${o.hue}, 80%, 75%, 0.08)`;
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
+                    g.addColorStop(0, `hsla(${o.hue},85%,80%,0.25)`);
+                    g.addColorStop(0.5, `hsla(${o.hue},75%,55%,0.10)`);
+                    g.addColorStop(1, `hsla(${o.hue},70%,30%,0)`);
+                    ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.fillStyle = g; ctx.fill();
+                    ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = `hsla(${o.hue},80%,75%,0.08)`;
+                    ctx.lineWidth = 0.8; ctx.stroke();
                 });
 
                 stars.forEach(s => {
                     s.t += s.sp;
                     const alpha = 0.2 + 0.8 * Math.abs(Math.sin(s.t));
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(200, 225, 255, ${alpha})`;
+                    ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(200,225,255,${alpha})`;
                     ctx.fill();
                 });
 
                 shooters.forEach(s => {
-                    if (!s.active) {
-                        s.delay--;
-                        if (s.delay <= 0) resetShooter(s);
-                        return;
-                    }
-                    s.x += s.speed;
-                    s.y += s.speed * 0.4;
-                    s.op -= 0.012;
-                    if (s.op <= 0) {
-                        s.active = false;
-                        s.delay = 60 + Math.floor(Math.random() * 140);
-                        return;
-                    }
-                    const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.4);
-                    grad.addColorStop(0, `rgba(180, 220, 255, ${s.op})`);
-                    grad.addColorStop(0.4, `rgba(120, 180, 255, ${s.op * 0.5})`);
-                    grad.addColorStop(1, 'rgba(255,255,255,0)');
-                    ctx.beginPath();
-                    ctx.moveTo(s.x, s.y);
-                    ctx.lineTo(s.x - s.len, s.y - s.len * 0.4);
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = 2.0;
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, 2.8, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(240, 248, 255, ${s.op})`;
+                    if (!s.active) { s.delay--; if (s.delay <= 0) resetShooter(s); return; }
+                    s.x += s.speed; s.y += s.speed * 0.4; s.op -= 0.012;
+                    if (s.op <= 0) { s.active = false; s.delay = 60 + Math.floor(Math.random() * 140); return; }
+                    const sg = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.4);
+                    sg.addColorStop(0, `rgba(180,220,255,${s.op})`);
+                    sg.addColorStop(0.4, `rgba(120,180,255,${s.op * 0.5})`);
+                    sg.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - s.len, s.y - s.len * 0.4);
+                    ctx.strokeStyle = sg; ctx.lineWidth = 2.0; ctx.stroke();
+                    ctx.beginPath(); ctx.arc(s.x, s.y, 2.8, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(240,248,255,${s.op})`;
                     ctx.fill();
                 });
                 requestAnimationFrame(draw);
             }
             draw();
+
+            // Start loading
+            loadResources();
+
+            // Scroll-to-top button
+            const floatBtn = document.getElementById('floatUpBtn');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) floatBtn.classList.add('visible');
+                else floatBtn.classList.remove('visible');
+            });
+            floatBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 </body>
