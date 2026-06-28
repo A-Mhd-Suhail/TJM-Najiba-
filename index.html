@@ -1,401 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Studies Made Easy · Ace Exams</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234a7cf7'/%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='%23ffffff'%3ES%3C/text%3E%3Ctext x='50' y='72' font-size='60' font-weight='bold' font-family='Arial' text-anchor='middle' fill='none' stroke='%23a0c4ff' stroke-width='2' opacity='0.5'%3ES%3C/text%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studies Made Easy · Ace Exams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <canvas id="bg"></canvas>
+  <canvas id="bg"></canvas>
 
-    <header class="header">
-        <div class="logo-wrapper">
-            <span class="logo-icon">📖</span>
-            <div class="logo-group">
-                <span class="logo">Studies Made Easy</span>
-            </div>
-        </div>
-        <ul class="nav-menu">
-            <li onclick="window.location.href='index.html'">🏠 Home</li>
-            <li>ℹ️ About</li>
-            <li>📞 Contact</li>
-        </ul>
-    </header>
-
-    <!-- ===== VIBRANT CEO BLOCK - BIGGER & BOLDER ===== -->
-    <div class="ceo-wrapper">
-        <div class="ceo-container">
-            <div class="ceo-shine"></div>
-            <div class="ceo-glow-ring"></div>
-            
-            <!-- Decorative Corner Stars -->
-            <span class="corner-star tl">✦</span>
-            <span class="corner-star tr">✦</span>
-            <span class="corner-star bl">✦</span>
-            <span class="corner-star br">✦</span>
-            
-            <div class="ceo-content">
-                <span class="ceo-crown">👑</span>
-                <div class="ceo-text-group">
-                    <span class="ceo-label">✦ FOUNDER &amp; CEO ✦</span>
-                    <div class="ceo-name-wrapper">
-                        <span class="ceo-name-big">T.J.M Najiba</span>
-                        <span class="ceo-name-glow"></span>
-                    </div>
-                    <span class="ceo-tagline">💕 The Heart Behind Studies Made Easy</span>
-                </div>
-                <span class="ceo-sparkle">✨</span>
-            </div>
-            
-            <!-- Decorative Bottom Line -->
-            <div class="ceo-divider">
-                <span class="divider-dot">◆</span>
-                <span class="divider-line"></span>
-                <span class="divider-dot">◆</span>
-                <span class="divider-line"></span>
-                <span class="divider-dot">◆</span>
-            </div>
-        </div>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="nav-logo">
+      <span class="nav-logo-icon">📖</span>
+      <span class="nav-logo-text">Studies Made Easy</span>
     </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <span class="hero-badge">✨ Your Aesthetic Study Sanctuary</span>
-            <h2 class="hero-title">
-                Master Your Exams with<br>
-                <span class="gradient-text">Confidence &amp; Joy</span>
-            </h2>
-            <p class="hero-description">
-                Say goodbye to exam stress! Get instant access to curated notes, high-quality PDFs, colorful worksheets, and solved PYQs tailored beautifully for 
-                <span class="all-boards-inline">
-                    <span class="glass-chip" onclick="window.location.href='cbse.html'">CBSE</span>
-                    <span class="glass-chip" onclick="window.location.href='stateboards.html'">State Boards</span>
-                    <span class="glass-chip" onclick="window.location.href='icse.html'">ICSE</span>
-                    <span class="glass-chip" onclick="window.location.href='jee.html'">JEE</span>
-                    <span class="glass-chip" onclick="window.location.href='neet.html'">NEET</span>
-                </span>
-            </p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-number">50K+</span>
-                    <span class="hero-stat-label">Happy Minds</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">1000+</span>
-                    <span class="hero-stat-label">Smart Resources</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">98%</span>
-                    <span class="hero-stat-label">Success Rate ✨</span>
-                </div>
-            </div>
-            <div class="hero-explore">
-                <a href="#landmark-section" class="explore-link">
-                    <span class="explore-text">🚀 Enter the Study Universe</span>
-                    <span class="explore-arrow">→</span>
-                </a>
-                <span class="explore-sub">Discover a world of limitless learning</span>
-            </div>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+
+      <!-- CEO BANNER — Shiny Glassy -->
+      <div class="ceo-banner">
+        <div class="ceo-shine-layer"></div>
+        <div class="ceo-gloss"></div>
+        <span class="ceo-crown">👑</span>
+        <div class="ceo-text">
+          <p class="ceo-role">✦ Founder &amp; CEO ✦</p>
+          <h1 class="ceo-name">T.J.M Najiba</h1>
+          <p class="ceo-sub">💫 The Heart &amp; Soul Behind Studies Made Easy 💫</p>
         </div>
-    </section>
+        <span class="ceo-crown">👑</span>
+      </div>
 
-    <!-- ===== AI STUDY BUDDY SECTION ===== -->
-    <section class="study-buddy-section">
-        <div class="study-buddy-container">
-            <div class="study-buddy-content">
-                <span class="study-buddy-icon">🤖</span>
-                <div class="study-buddy-text">
-                    <h3 class="study-buddy-title">Your 24/7 AI Study Buddy</h3>
-                    <p class="study-buddy-desc">
-                        Stuck on a problem? Need help with coding, cybersecurity, or any subject? 
-                        <span class="study-buddy-highlight">Your AI assistant is always here</span> — 
-                        ready to explain, guide, and help you ace your exams!
-                    </p>
-                    <div class="study-buddy-features">
-                        <span class="buddy-feature">💻 Code Help</span>
-                        <span class="buddy-feature">🔐 Cyber Security</span>
-                        <span class="buddy-feature">📚 Notes &amp; PYQs</span>
-                        <span class="buddy-feature">⚡ 24/7 Support</span>
-                    </div>
-                </div>
-                <div class="study-buddy-cta">
-                    <span class="buddy-pulse">💬 Ask Me Anything</span>
-                </div>
-            </div>
-            <div class="study-buddy-glow"></div>
+      <!-- Hero headline ONLY — no description yet -->
+      <div class="hero-headline">
+        <span class="hero-tag">✨ Your Aesthetic Study Sanctuary</span>
+        <h2 class="hero-h2">Master Your Exams with<br><em class="accent-text">Confidence &amp; Joy</em></h2>
+        <p class="hero-desc">
+          Drop the stress, grab the glow-up. 🌟 Smart notes, curated PDFs &amp; solved PYQs — designed to make you <span class="desc-spark">fall in love with studying.</span>
+        </p>
+      </div>
+
+      <!-- EXAM BOARDS — shiny glossy, inserted HERE between desc and stats -->
+      <div class="boards-strip">
+        <a href="cbse.html" class="board-chip" style="--c1:#60a5fa;--c2:#818cf8">
+          <span class="board-shine"></span>
+          <span class="board-icon">🏛️</span>
+          <span class="board-name">CBSE</span>
+          <span class="board-grade">1–12</span>
+        </a>
+        <a href="stateboards.html" class="board-chip" style="--c1:#c084fc;--c2:#f472b6">
+          <span class="board-shine"></span>
+          <span class="board-icon">🗺️</span>
+          <span class="board-name">State Boards</span>
+          <span class="board-grade">1–12</span>
+        </a>
+        <a href="icse.html" class="board-chip" style="--c1:#34d399;--c2:#60a5fa">
+          <span class="board-shine"></span>
+          <span class="board-icon">📘</span>
+          <span class="board-name">ICSE</span>
+          <span class="board-grade">1–12</span>
+        </a>
+        <a href="jee.html" class="board-chip" style="--c1:#fbbf24;--c2:#fb923c">
+          <span class="board-shine"></span>
+          <span class="board-icon">⚡</span>
+          <span class="board-name">JEE</span>
+          <span class="board-grade">Main + Adv</span>
+        </a>
+        <a href="neet.html" class="board-chip" style="--c1:#f472b6;--c2:#e879f9">
+          <span class="board-shine"></span>
+          <span class="board-icon">🩺</span>
+          <span class="board-name">NEET</span>
+          <span class="board-grade">UG · PG</span>
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-pill">
+          <span class="stat-num">50K+</span>
+          <span class="stat-lbl">Happy Minds</span>
         </div>
-    </section>
-
-    <section id="landmark-section" class="landmark-section">
-        <h3 class="landmark-title">🎯 Exam Landmark</h3>
-        <p class="landmark-sub">Your gateway to India's top competitive &amp; board exams</p>
-        <div class="landmark-grid">
-            <a href="cbse.html" class="landmark-card">
-                <span class="landmark-icon">🏛️</span>
-                <h4>CBSE</h4>
-                <p>Central Board</p>
-                <span class="landmark-tag">1st to 12th</span>
-            </a>
-            <a href="stateboards.html" class="landmark-card">
-                <span class="landmark-icon">🗺️</span>
-                <h4>State Boards</h4>
-                <p>All states</p>
-                <span class="landmark-tag">1st to 12th</span>
-            </a>
-            <a href="icse.html" class="landmark-card">
-                <span class="landmark-icon">📘</span>
-                <h4>ICSE</h4>
-                <p>Indian Certificate</p>
-                <span class="landmark-tag">1st to 12th</span>
-            </a>
-            <a href="jee.html" class="landmark-card">
-                <span class="landmark-icon">⚡</span>
-                <h4>JEE</h4>
-                <p>IIT / NIT</p>
-                <span class="landmark-tag">Main + Advanced</span>
-            </a>
-            <a href="neet.html" class="landmark-card">
-                <span class="landmark-icon">🩺</span>
-                <h4>NEET</h4>
-                <p>Medical entrance</p>
-                <span class="landmark-tag">UG · PG</span>
-            </a>
+        <div class="stat-divider"></div>
+        <div class="stat-pill">
+          <span class="stat-num">1000+</span>
+          <span class="stat-lbl">Smart Resources</span>
         </div>
-    </section>
-
-    <section class="features-section">
-        <h3 class="section-title">What We Offer</h3>
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">📖</span>
-                <h4>All Boards</h4>
-                <p>CBSE • ICSE • State Boards • NCERT</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📄</span>
-                <h4>Study Material</h4>
-                <p>PDFs • Notes • Worksheets • Solutions</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">✏️</span>
-                <h4>Practice</h4>
-                <p>PYQs • Sample Papers • Mock Tests</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🏆</span>
-                <h4>Exam Prep</h4>
-                <p>JEE • NEET • Olympiad • Competitive</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📊</span>
-                <h4>Performance Tracker</h4>
-                <p>Progress Reports • Weakness Analysis</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <h4>Personalized Learning</h4>
-                <p>AI-powered Recommendations • Doubt Solving</p>
-            </div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill">
+          <span class="stat-num">98%</span>
+          <span class="stat-lbl">Success Rate ✨</span>
         </div>
-    </section>
+      </div>
 
-    <section class="contact-section">
-        <div class="contact-box">
-            <span class="contact-icon">📬</span>
-            <h3 class="contact-title">Get in Touch</h3>
-            <p class="contact-subtitle">We'd love to hear from you! Reach out to us anytime.</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-item-icon">✉️</span>
-                    <span class="contact-item-label">Email</span>
-                    <span class="contact-item-value">xyz@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-item-icon">📱</span>
-                    <span class="contact-item-label">Phone</span>
-                    <span class="contact-item-value">+91 12345 67890</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-item-icon">📍</span>
-                    <span class="contact-item-label">Address</span>
-                    <span class="contact-item-value">Studies Made Easy, India</span>
-                </div>
-            </div>
-            <div class="contact-social">
-                <span class="social-icon">📘</span>
-                <span class="social-icon">📸</span>
-                <span class="social-icon">🐦</span>
-                <span class="social-icon">💼</span>
-            </div>
+      <!-- CTA -->
+      <a href="#exams" class="cta-btn">
+        🚀 Enter the Study Universe <span class="cta-arrow">→</span>
+      </a>
+      <p class="cta-sub">Discover a world of limitless learning</p>
+
+    </div>
+  </section>
+
+  <!-- ===== EXAM LANDMARK (full section below) ===== -->
+  <section id="exams" class="exams-section">
+    <div class="section-header">
+      <h2 class="section-title">🎯 Exam Landmark</h2>
+      <p class="section-sub">Your gateway to India's top competitive &amp; board exams</p>
+    </div>
+    <div class="exams-grid">
+      <a href="cbse.html" class="exam-card" style="--accent:#7eb8ff">
+        <span class="exam-icon">🏛️</span>
+        <h4>CBSE</h4>
+        <p>Central Board</p>
+        <span class="exam-tag">1st to 12th</span>
+      </a>
+      <a href="stateboards.html" class="exam-card" style="--accent:#b197fc">
+        <span class="exam-icon">🗺️</span>
+        <h4>State Boards</h4>
+        <p>All States</p>
+        <span class="exam-tag">1st to 12th</span>
+      </a>
+      <a href="icse.html" class="exam-card" style="--accent:#74c0fc">
+        <span class="exam-icon">📘</span>
+        <h4>ICSE</h4>
+        <p>Indian Certificate</p>
+        <span class="exam-tag">1st to 12th</span>
+      </a>
+      <a href="jee.html" class="exam-card" style="--accent:#ffd43b">
+        <span class="exam-icon">⚡</span>
+        <h4>JEE</h4>
+        <p>IIT / NIT</p>
+        <span class="exam-tag">Main + Advanced</span>
+      </a>
+      <a href="neet.html" class="exam-card" style="--accent:#f783ac">
+        <span class="exam-icon">🩺</span>
+        <h4>NEET</h4>
+        <p>Medical Entrance</p>
+        <span class="exam-tag">UG · PG</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE OFFER ===== -->
+  <section class="offers-section">
+    <div class="section-header">
+      <h2 class="section-title">What We Offer</h2>
+      <p class="section-sub">Everything you need to study smarter, not harder</p>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <span class="offer-icon">📖</span>
+        <h4>All Boards</h4>
+        <p>CBSE · ICSE · State Boards · NCERT</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-icon">📄</span>
+        <h4>Study Material</h4>
+        <p>PDFs · Notes · Worksheets · Solutions</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-icon">✏️</span>
+        <h4>Practice</h4>
+        <p>PYQs · Sample Papers · Mock Tests</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-icon">🏆</span>
+        <h4>Exam Prep</h4>
+        <p>JEE · NEET · Olympiad · Competitive</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-icon">📊</span>
+        <h4>Performance Tracker</h4>
+        <p>Progress Reports · Weakness Analysis</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-icon">🎯</span>
+        <h4>Personalized Learning</h4>
+        <p>AI Recommendations · Doubt Solving</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact-section">
+    <div class="contact-card">
+      <span class="contact-emoji">📬</span>
+      <h2 class="contact-title">Get in Touch</h2>
+      <p class="contact-sub">We'd love to hear from you! Reach out anytime.</p>
+      <div class="contact-list">
+        <div class="contact-row">
+          <span>✉️</span>
+          <div>
+            <span class="contact-lbl">Email</span>
+            <span class="contact-val">xyz@gmail.com</span>
+          </div>
         </div>
-    </section>
+        <div class="contact-row">
+          <span>📱</span>
+          <div>
+            <span class="contact-lbl">Phone</span>
+            <span class="contact-val">+91 12345 67890</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span>📍</span>
+          <div>
+            <span class="contact-lbl">Address</span>
+            <span class="contact-val">Studies Made Easy, India</span>
+          </div>
+        </div>
+      </div>
+      <div class="social-row">
+        <span title="Facebook">📘</span>
+        <span title="Instagram">📸</span>
+        <span title="Twitter">🐦</span>
+        <span title="LinkedIn">💼</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>© 2025 <strong>Studies Made Easy</strong> · Founded by T.J.M Najiba</p>
     <div class="footer-links">
-        <span onclick="window.location.href='index.html'">🏠 Home</span>
-        <span>•</span>
-        <span>ℹ️ About</span>
-        <span>•</span>
-        <span>📞 Contact</span>
-        <span>•</span>
-        <span>📧 xyz@gmail.com</span>
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:xyz@gmail.com">xyz@gmail.com</a>
     </div>
+  </footer>
 
-    <script>
-        // ===== SMOOTH SCROLL FOR EXPLORE LINK =====
-        document.querySelector('.explore-link')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector('#landmark-section');
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    (function() {
+      const canvas = document.getElementById('bg');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+      window.addEventListener('resize', resize); resize();
+
+      const orbs = Array.from({ length: 12 }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        r: 40 + Math.random() * 110,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        hue: [250, 280, 320, 200, 260][Math.floor(Math.random() * 5)]
+      }));
+
+      const stars = Array.from({ length: 180 }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        r: 0.3 + Math.random() * 1.3,
+        t: Math.random() * Math.PI * 2,
+        sp: 0.008 + Math.random() * 0.022
+      }));
+
+      const shooters = Array.from({ length: 7 }, () => ({ active: false, delay: Math.floor(Math.random() * 120) }));
+      function resetShooter(s) {
+        s.x = Math.random() * W * 0.7; s.y = Math.random() * H * 0.3;
+        s.len = 80 + Math.random() * 130; s.speed = 7 + Math.random() * 11;
+        s.op = 1; s.active = true; s.delay = 80 + Math.floor(Math.random() * 180);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const bg = ctx.createRadialGradient(W * 0.4, H * 0.3, 0, W * 0.4, H * 0.3, W);
+        bg.addColorStop(0, '#0e0b22'); bg.addColorStop(0.5, '#070514'); bg.addColorStop(1, '#020209');
+        ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+        orbs.forEach(o => {
+          o.x += o.vx; o.y += o.vy;
+          if (o.x < 0 || o.x > W) o.vx *= -1;
+          if (o.y < 0 || o.y > H) o.vy *= -1;
+          const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
+          g.addColorStop(0, `hsla(${o.hue},85%,75%,0.20)`);
+          g.addColorStop(1, `hsla(${o.hue},70%,40%,0)`);
+          ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+          ctx.fillStyle = g; ctx.fill();
         });
 
-        // ===== CHECK FOR HASH ON LOAD =====
-        window.addEventListener('load', function() {
-            if (window.location.hash === '#landmark-section') {
-                setTimeout(function() {
-                    const target = document.querySelector('#landmark-section');
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }, 300);
-            }
+        stars.forEach(s => {
+          s.t += s.sp;
+          const a = 0.15 + 0.85 * Math.abs(Math.sin(s.t));
+          ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(215,225,255,${a})`; ctx.fill();
         });
 
-        // ===== CANVAS ANIMATION: SHOOTING STARS + ORBS =====
-        window.addEventListener('load', function() {
-            const canvas = document.getElementById('bg');
-            const ctx = canvas.getContext('2d');
-            let W, H;
-
-            function resize() {
-                W = canvas.width = window.innerWidth;
-                H = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            const orbs = Array.from({ length: 14 }, () => ({
-                x: Math.random() * W,
-                y: Math.random() * H,
-                r: 30 + Math.random() * 90,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                hue: 200 + Math.random() * 40
-            }));
-
-            const stars = Array.from({ length: 180 }, () => ({
-                x: Math.random() * W,
-                y: Math.random() * H,
-                r: 0.3 + Math.random() * 1.4,
-                t: Math.random() * Math.PI * 2,
-                sp: 0.008 + Math.random() * 0.025
-            }));
-
-            const shooters = Array.from({ length: 24 }, () => ({
-                x: Math.random() * W,
-                y: Math.random() * H * 0.35,
-                len: 70 + Math.random() * 130,
-                speed: 6 + Math.random() * 14,
-                op: 0,
-                active: false,
-                delay: Math.floor(Math.random() * 70)
-            }));
-
-            function resetShooter(s) {
-                s.x = Math.random() * W * 0.85;
-                s.y = Math.random() * H * 0.25;
-                s.op = 1;
-                s.active = true;
-                s.delay = 60 + Math.floor(Math.random() * 140);
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, W, H);
-
-                const grad = ctx.createRadialGradient(W * 0.3, H * 0.3, 0, W * 0.3, H * 0.3, W * 0.9);
-                grad.addColorStop(0, '#0a1a3a');
-                grad.addColorStop(0.6, '#050c20');
-                grad.addColorStop(1, '#00040a');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, W, H);
-
-                orbs.forEach(o => {
-                    o.x += o.vx;
-                    o.y += o.vy;
-                    if (o.x < 0 || o.x > W) o.vx *= -1;
-                    if (o.y < 0 || o.y > H) o.vy *= -1;
-
-                    const g = ctx.createRadialGradient(
-                        o.x - o.r * 0.2, o.y - o.r * 0.2, 0,
-                        o.x, o.y, o.r
-                    );
-                    g.addColorStop(0, `hsla(${o.hue}, 85%, 80%, 0.25)`);
-                    g.addColorStop(0.5, `hsla(${o.hue}, 75%, 55%, 0.10)`);
-                    g.addColorStop(1, `hsla(${o.hue}, 70%, 30%, 0)`);
-                    ctx.beginPath();
-                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-                    ctx.fillStyle = g;
-                    ctx.fill();
-
-                    ctx.beginPath();
-                    ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-                    ctx.strokeStyle = `hsla(${o.hue}, 80%, 75%, 0.08)`;
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
-                });
-
-                stars.forEach(s => {
-                    s.t += s.sp;
-                    const alpha = 0.2 + 0.8 * Math.abs(Math.sin(s.t));
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(200, 225, 255, ${alpha})`;
-                    ctx.fill();
-                });
-
-                shooters.forEach(s => {
-                    if (!s.active) {
-                        s.delay--;
-                        if (s.delay <= 0) resetShooter(s);
-                        return;
-                    }
-                    s.x += s.speed;
-                    s.y += s.speed * 0.4;
-                    s.op -= 0.012;
-                    if (s.op <= 0) {
-                        s.active = false;
-                        s.delay = 60 + Math.floor(Math.random() * 140);
-                        return;
-                    }
-                    const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.4);
-                    grad.addColorStop(0, `rgba(180, 220, 255, ${s.op})`);
-                    grad.addColorStop(0.4, `rgba(120, 180, 255, ${s.op * 0.5})`);
-                    grad.addColorStop(1, 'rgba(255,255,255,0)');
-                    ctx.beginPath();
-                    ctx.moveTo(s.x, s.y);
-                    ctx.lineTo(s.x - s.len, s.y - s.len * 0.4);
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = 2.0;
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, 2.8, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(240, 248, 255, ${s.op})`;
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(draw);
-            }
-            draw();
+        shooters.forEach(s => {
+          if (!s.active) { if (--s.delay <= 0) resetShooter(s); return; }
+          s.x += s.speed; s.y += s.speed * 0.38; s.op -= 0.013;
+          if (s.op <= 0) { s.active = false; s.delay = 80 + Math.floor(Math.random() * 200); return; }
+          const sg = ctx.createLinearGradient(s.x, s.y, s.x - s.len, s.y - s.len * 0.38);
+          sg.addColorStop(0, `rgba(230,200,255,${s.op})`); sg.addColorStop(1, 'rgba(180,150,255,0)');
+          ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - s.len, s.y - s.len * 0.38);
+          ctx.strokeStyle = sg; ctx.lineWidth = 1.8; ctx.stroke();
+          ctx.beginPath(); ctx.arc(s.x, s.y, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(240,230,255,${s.op})`; ctx.fill();
         });
-    </script>
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
 </body>
 </html>
