@@ -347,7 +347,11 @@
             color: #9bf6ff;
         }
 
-        /* ===== SEARCH FILTERS - GLOWING GLASS BORDER ===== */
+        /* ===== SEARCH FILTERS - GLOWING GLASS BORDER WITH ROTATING GLOW ===== */
+        .search-filter-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
         .search-filter-block {
             display: flex;
             flex-wrap: wrap;
@@ -358,52 +362,62 @@
             background: rgba(15, 20, 50, 0.3);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(100, 180, 255, 0.08);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(100, 180, 255, 0.02);
-            margin-bottom: 24px;
+            border: 1.5px solid rgba(100, 180, 255, 0.1);
+            box-shadow: 
+                0 8px 40px rgba(0, 0, 0, 0.15), 
+                0 0 30px rgba(100, 180, 255, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.4s ease;
             animation: searchGlow 4s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
+
         .search-filter-block::before {
             content: '';
             position: absolute;
-            inset: -2px;
-            border-radius: 26px;
-            padding: 2px;
-            background: conic-gradient(
-                from var(--border-angle, 0deg),
-                transparent 0%,
-                rgba(100, 180, 255, 0.3) 20%,
-                rgba(155, 246, 255, 0.3) 40%,
-                transparent 60%,
-                transparent 100%
+            inset: -1px;
+            border-radius: 24px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(100, 180, 255, 0.3),
+                rgba(155, 246, 255, 0.2),
+                transparent
             );
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            opacity: 0.6;
-            animation: rotateBorder 6s linear infinite;
+            background-size: 200% 100%;
+            animation: borderGradientShift 6s linear infinite;
             pointer-events: none;
             z-index: 0;
+            opacity: 0.5;
         }
-        @property --border-angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
+
+        @keyframes borderGradientShift {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
-        @keyframes rotateBorder {
-            to { --border-angle: 360deg; }
-        }
-        .search-filter-block:hover {
-            border-color: rgba(100, 180, 255, 0.15);
-            box-shadow: 0 8px 60px rgba(100, 180, 255, 0.06), 0 0 40px rgba(100, 180, 255, 0.04);
-        }
+
         @keyframes searchGlow {
-            0%, 100% { border-color: rgba(100, 180, 255, 0.08); }
-            50% { border-color: rgba(100, 180, 255, 0.15); }
+            0%, 100% { border-color: rgba(100, 180, 255, 0.1); }
+            50% { border-color: rgba(100, 180, 255, 0.2); }
+        }
+
+        .search-filter-block:hover {
+            border-color: rgba(100, 180, 255, 0.25);
+            box-shadow: 
+                0 12px 60px rgba(100, 180, 255, 0.08), 
+                0 0 50px rgba(100, 180, 255, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .search-filters-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+            align-items: flex-end;
         }
 
         .search-group {
@@ -455,6 +469,63 @@
         .search-group input::placeholder {
             color: rgba(180, 210, 255, 0.15);
             font-weight: 300;
+        }
+
+        /* ===== RESET BUTTON ===== */
+        .reset-btn-wrapper {
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-reset {
+            padding: 8px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.1), rgba(255, 150, 150, 0.05));
+            border: 1.5px solid rgba(255, 100, 100, 0.15);
+            color: #ff8a8a;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Segoe UI', sans-serif;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-reset::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .btn-reset:hover::before {
+            opacity: 1;
+        }
+
+        .btn-reset:hover {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 150, 150, 0.1));
+            border-color: rgba(255, 100, 100, 0.3);
+            color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 100, 100, 0.1);
+        }
+
+        .btn-reset:active {
+            transform: translateY(0);
         }
 
         /* ===== LIBRARY HEADER ===== */
@@ -515,28 +586,24 @@
             position: relative;
             overflow: hidden;
         }
+
         .heart-message::before {
             content: '';
             position: absolute;
             inset: -2px;
             border-radius: 30px;
-            padding: 2px;
-            background: conic-gradient(
-                from var(--border-angle, 0deg),
-                transparent 0%,
-                rgba(255, 215, 0, 0.15) 20%,
-                rgba(255, 100, 200, 0.15) 40%,
-                transparent 60%,
-                transparent 100%
-            );
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            opacity: 0.3;
-            animation: rotateBorder 8s linear infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            background-size: 200% 100%;
+            animation: heartShine 4s linear infinite;
             pointer-events: none;
+            opacity: 0.5;
         }
+
+        @keyframes heartShine {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         @keyframes heartPulse {
             0%, 100% { border-color: rgba(255, 215, 0, 0.06); }
             50% { border-color: rgba(255, 215, 0, 0.15); }
@@ -565,6 +632,8 @@
             animation: glassyShine 4s linear infinite;
             letter-spacing: 0.3px;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
         .heart-message .msg-sub {
             display: block;
@@ -574,6 +643,8 @@
             margin-top: 2px;
             font-family: 'Segoe UI', sans-serif;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== REFRESH BUTTON BLOCK (CENTERED, RED 3D) ===== */
@@ -642,6 +713,10 @@
             animation: refreshSpin 2s linear infinite;
             font-size: 22px;
         }
+        @keyframes refreshSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         @keyframes refreshRedPulse {
             0%, 100% { box-shadow: 0 8px 0 #8a1a1a, 0 12px 30px rgba(224, 49, 49, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.2); }
             50% { box-shadow: 0 8px 0 #8a1a1a, 0 16px 50px rgba(224, 49, 49, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 0 rgba(0, 0, 0, 0.2); }
@@ -654,7 +729,7 @@
             gap: 20px;
         }
 
-        /* ===== RESOURCE CARDS WITH BORDER GLOW (FIXED) ===== */
+        /* ===== RESOURCE CARDS WITH 3D BOTTLE & BORDER GLOW ===== */
         .resource-card {
             background: rgba(15, 20, 50, 0.35);
             backdrop-filter: blur(20px) saturate(180%);
@@ -667,7 +742,6 @@
             position: relative;
             overflow: hidden;
             animation: cardEntry 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
-            /* Ensure border glow visible */
             isolation: isolate;
         }
         .resource-card:nth-child(1) { animation-delay: 0.05s; }
@@ -682,37 +756,66 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ✨ ANIMATED BORDER GLOW ON CARDS (FIXED) */
+        /* ✨ ANIMATED BORDER GLOW ON CARDS ===== */
         .resource-card::before {
             content: '';
             position: absolute;
             inset: -2px;
             border-radius: 30px;
-            padding: 2px;
-            background: conic-gradient(
-                from var(--border-angle, 0deg),
-                transparent 0%,
-                rgba(155, 246, 255, 0.4) 10%,
-                rgba(189, 178, 255, 0.4) 20%,
-                rgba(255, 198, 255, 0.4) 30%,
-                transparent 40%,
-                transparent 60%,
-                rgba(155, 246, 255, 0.3) 70%,
-                rgba(189, 178, 255, 0.3) 80%,
-                transparent 100%
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(155, 246, 255, 0.4),
+                rgba(189, 178, 255, 0.4),
+                rgba(255, 198, 255, 0.4),
+                transparent
             );
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
+            background-size: 200% 100%;
             opacity: 0;
             transition: opacity 0.6s ease;
             pointer-events: none;
-            animation: rotateBorder 6s linear infinite;
+            animation: borderGlowShift 6s linear infinite;
             z-index: -1;
         }
+
+        @keyframes borderGlowShift {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         .resource-card:hover::before {
             opacity: 1;
+        }
+
+        /* ===== 3D BOTTLE ILLUSTRATION ===== */
+        .resource-bottle {
+            position: absolute;
+            top: -30px;
+            right: -20px;
+            width: 140px;
+            height: 160px;
+            opacity: 0.3;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            animation: bottleFloat 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .resource-card:hover .resource-bottle {
+            opacity: 0.5;
+            transform: translateY(-10px) rotateZ(-15deg) rotateX(10deg);
+        }
+
+        @keyframes bottleFloat {
+            0%, 100% { transform: translateY(0) rotateZ(-5deg) rotateX(5deg); }
+            50% { transform: translateY(-15px) rotateZ(-8deg) rotateX(8deg); }
+        }
+
+        .bottle-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px rgba(100, 180, 255, 0.3));
         }
 
         /* Card inner glow on hover */
@@ -764,7 +867,19 @@
             font-size: 10px;
             font-family: 'Segoe UI', sans-serif;
             letter-spacing: 0.3px;
+            animation: tagFloat 3s ease-in-out infinite;
         }
+        .resource-breadcrumb span:nth-child(2) { animation-delay: 0.1s; }
+        .resource-breadcrumb span:nth-child(3) { animation-delay: 0.2s; }
+        .resource-breadcrumb span:nth-child(4) { animation-delay: 0.3s; }
+        .resource-breadcrumb span:nth-child(5) { animation-delay: 0.4s; }
+        .resource-breadcrumb span:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes tagFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
         .resource-breadcrumb .board-tag {
             background: rgba(74, 124, 247, 0.08);
             border-color: rgba(74, 124, 247, 0.05);
@@ -841,7 +956,26 @@
             -webkit-backdrop-filter: blur(8px);
             letter-spacing: 0.2px;
             border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
+
+        .resource-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .resource-link:hover::before {
+            opacity: 1;
+        }
+
         .resource-link.youtube {
             background: rgba(255, 0, 0, 0.05);
             border-color: rgba(255, 0, 0, 0.06);
@@ -901,6 +1035,12 @@
             letter-spacing: 0.5px;
             font-family: 'Segoe UI', sans-serif;
             z-index: 1;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
 
         /* ===== NO RESULTS ===== */
@@ -908,6 +1048,7 @@
             text-align: center;
             padding: 60px 20px;
             color: rgba(180, 210, 255, 0.2);
+            grid-column: 1/-1;
         }
         .no-results .big-icon {
             font-size: 56px;
@@ -1004,7 +1145,6 @@
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            padding: 2px;
             background: conic-gradient(
                 from var(--border-angle, 0deg),
                 transparent 0%,
@@ -1013,15 +1153,22 @@
                 transparent 60%,
                 transparent 100%
             );
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
             opacity: 0.5;
             animation: rotateBorder 4s linear infinite;
             pointer-events: none;
             z-index: -1;
         }
+
+        @property --border-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes rotateBorder {
+            to { --border-angle: 360deg; }
+        }
+
         .float-up-btn .tooltip {
             position: absolute;
             right: 70px;
@@ -1169,6 +1316,10 @@
             .ceo-sparkle { font-size: 20px; }
             .float-up-btn { width: 52px; height: 52px; font-size: 24px; bottom: 24px; right: 24px; }
             .refresh-btn-red { padding: 12px 30px; font-size: 16px; }
+            .search-filters-inner { flex-direction: column; }
+            .search-group { min-width: 100%; }
+            .reset-btn-wrapper { width: 100%; }
+            .btn-reset { width: 100%; justify-content: center; }
         }
         @media (max-width: 768px) {
             .library-title { font-size: 32px; }
@@ -1245,74 +1396,83 @@
             <button class="btn-action" onclick="window.location.href='index.html#exams'">🔄 Change Portal</button>
         </div>
 
-        <div class="search-filter-block">
-            <div class="search-group">
-                <label>🌍 Language</label>
-                <select id="filterLanguage">
-                    <option value="all">All Languages</option>
-                    <option value="english">English</option>
-                    <option value="hindi">Hindi</option>
-                    <option value="tamil">Tamil</option>
-                    <option value="telugu">Telugu</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <label>📖 Class</label>
-                <select id="filterClass">
-                    <option value="all">All Classes</option>
-                    <option value="6">Class 6</option>
-                    <option value="7">Class 7</option>
-                    <option value="8">Class 8</option>
-                    <option value="9">Class 9</option>
-                    <option value="10">Class 10</option>
-                    <option value="11">Class 11</option>
-                    <option value="12">Class 12</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <label>📘 Subject</label>
-                <select id="filterSubject">
-                    <option value="all">All Subjects</option>
-                    <option value="math">Mathematics</option>
-                    <option value="physics">Physics</option>
-                    <option value="chemistry">Chemistry</option>
-                    <option value="biology">Biology</option>
-                    <option value="english">English</option>
-                    <option value="computers">Computer Science</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <label>📺 Channel</label>
-                <select id="filterChannel">
-                    <option value="all">All Channels</option>
-                    <option value="vedantu">Vedantu</option>
-                    <option value="physicswallah">Physics Wallah</option>
-                    <option value="byjus">BYJU'S</option>
-                    <option value="unacademy">Unacademy</option>
-                    <option value="magnetbrains">Magnet Brains</option>
-                    <option value="learnohub">Learnohub</option>
-                    <option value="khanacademy">Khan Academy</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <label>📅 Year</label>
-                <select id="filterYear">
-                    <option value="all">All Years</option>
-                    <option value="2016-2017">2016-2017</option>
-                    <option value="2017-2018">2017-2018</option>
-                    <option value="2018-2019">2018-2019</option>
-                    <option value="2019-2020">2019-2020</option>
-                    <option value="2020-2021">2020-2021</option>
-                    <option value="2021-2022">2021-2022</option>
-                    <option value="2022-2023">2022-2023</option>
-                    <option value="2023-2024">2023-2024</option>
-                    <option value="2024-2025">2024-2025</option>
-                    <option value="2025-2026">2025-2026</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <label>📂 Chapter Name</label>
-                <input type="text" id="filterChapter" placeholder="Type chapter name..." />
+        <div class="search-filter-wrapper">
+            <div class="search-filter-block">
+                <div class="search-filters-inner">
+                    <div class="search-group">
+                        <label>🌍 Language</label>
+                        <select id="filterLanguage">
+                            <option value="all">All Languages</option>
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="tamil">Tamil</option>
+                            <option value="telugu">Telugu</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>📖 Class</label>
+                        <select id="filterClass">
+                            <option value="all">All Classes</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>📘 Subject</label>
+                        <select id="filterSubject">
+                            <option value="all">All Subjects</option>
+                            <option value="math">Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="english">English</option>
+                            <option value="computers">Computer Science</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>📺 Channel</label>
+                        <select id="filterChannel">
+                            <option value="all">All Channels</option>
+                            <option value="vedantu">Vedantu</option>
+                            <option value="physicswallah">Physics Wallah</option>
+                            <option value="byjus">BYJU'S</option>
+                            <option value="unacademy">Unacademy</option>
+                            <option value="magnetbrains">Magnet Brains</option>
+                            <option value="learnohub">LearnoHub</option>
+                            <option value="khanacademy">Khan Academy</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>📅 Year</label>
+                        <select id="filterYear">
+                            <option value="all">All Years</option>
+                            <option value="2016-2017">2016-2017</option>
+                            <option value="2017-2018">2017-2018</option>
+                            <option value="2018-2019">2018-2019</option>
+                            <option value="2019-2020">2019-2020</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>📂 Chapter Name</label>
+                        <input type="text" id="filterChapter" placeholder="Type chapter name..." />
+                    </div>
+                </div>
+                <div class="reset-btn-wrapper">
+                    <button class="btn-reset" onclick="resetFilters()">
+                        <span>🔄</span> Reset All
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1365,15 +1525,19 @@
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTWGmUd6fVE3PA7NRPCINzMnjakTAaTzZwxYUsUCQsjaJkcaeol-33tnH7Ui0W7eKjIQTJp0xIdLbJD/pub?output=csv';
         const LOCAL_CSV = 'resources.csv';
 
-        // Channel name mapping (CSV values → dropdown values)
+        // Channel name mapping (CSV values → dropdown values) - FIXED
         const CHANNEL_MAP = {
-            'physics wallah': 'physicswallah',
-            'magnet brains': 'magnetbrains',
-            'learnohub': 'learnohub',
             'vedantu': 'vedantu',
+            'physics wallah': 'physicswallah',
+            'physicswallah': 'physicswallah',
             'byju\'s': 'byjus',
+            'byjus': 'byjus',
             'unacademy': 'unacademy',
-            'khan academy': 'khanacademy'
+            'magnet brains': 'magnetbrains',
+            'magnetbrains': 'magnetbrains',
+            'learnohub': 'learnohub',
+            'khan academy': 'khanacademy',
+            'khanacademy': 'khanacademy'
         };
 
         let allResources = [];
@@ -1450,11 +1614,11 @@
         function normalizeResource(row) {
             // Normalize channel: lower-case and map via CHANNEL_MAP
             let channelRaw = (row.channel || '').toLowerCase().trim();
-            let channelKey = CHANNEL_MAP[channelRaw] || channelRaw.replace(/\s+/g, ''); // fallback
+            let channelKey = CHANNEL_MAP[channelRaw] || channelRaw.replace(/\s+/g, '');
 
             return {
                 language: (row.language || 'english').toLowerCase().trim(),
-                channel: channelKey,  // Now matches dropdown values (e.g., "physicswallah")
+                channel: channelKey,
                 board: (row.board || 'cbse').toLowerCase().trim(),
                 class: (row.class || '10').toString().trim(),
                 subject: (row.subject || 'math').toLowerCase().trim(),
@@ -1477,17 +1641,59 @@
         }
 
         function getDefaultLabel(type) {
-            const labels = { 'youtube': '📺 Watch', 'video': '📺 Watch', 'pdf': '📄 Download', 'document': '📄 Download', 'notes': '📝 Notes', 'sample': '📝 Sample' };
+            const labels = { 
+                'youtube': '📺 Watch', 
+                'video': '📺 Watch', 
+                'pdf': '📄 Download', 
+                'document': '📄 Download', 
+                'notes': '📝 Notes', 
+                'sample': '📝 Sample' 
+            };
             return labels[type.toLowerCase()] || '🔗 Open';
+        }
+
+        // ===== 3D BOTTLE SVG ===== 
+        function getBottleSVG() {
+            return `<svg class="bottle-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#9bf6ff;stop-opacity:0.8" />
+                        <stop offset="50%" style="stop-color:#7fb3ff;stop-opacity:0.6" />
+                        <stop offset="100%" style="stop-color:#64c8ff;stop-opacity:0.4" />
+                    </linearGradient>
+                    <filter id="bottleGlow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Bottle cap -->
+                <rect x="38" y="8" width="24" height="8" rx="2" fill="#ffd700" filter="url(#bottleGlow)"/>
+                <rect x="36" y="14" width="28" height="4" rx="1" fill="#ffed4e" opacity="0.8"/>
+                <!-- Bottle neck -->
+                <path d="M 42 18 L 40 28 L 60 28 L 58 18 Z" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.9"/>
+                <!-- Bottle body -->
+                <ellipse cx="50" cy="28" rx="18" ry="8" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.8"/>
+                <path d="M 40 28 Q 35 50 38 75 Q 40 95 50 105 Q 60 95 62 75 Q 65 50 60 28" fill="url(#bottleGrad)" filter="url(#bottleGlow)" stroke="#9bf6ff" stroke-width="0.5" opacity="0.85"/>
+                <!-- Bottle bottom -->
+                <ellipse cx="50" cy="105" rx="12" ry="8" fill="#5fa8d3" filter="url(#bottleGlow)" opacity="0.7"/>
+                <!-- Highlight shine -->
+                <ellipse cx="44" cy="45" rx="6" ry="20" fill="white" opacity="0.3" filter="url(#bottleGlow)"/>
+                <ellipse cx="48" cy="70" rx="3" ry="12" fill="white" opacity="0.2"/>
+                <!-- Glow effect -->
+                <circle cx="50" cy="60" r="25" fill="#9bf6ff" opacity="0.1" filter="url(#bottleGlow)"/>
+            </svg>`;
         }
 
         function renderResources(data) {
             if (!data || data.length === 0) {
                 container.innerHTML = `
-                    <div class="no-results" style="grid-column:1/-1;">
+                    <div class="no-results">
                         <span class="big-icon">📂</span>
                         <h4>No resources found</h4>
-                        <p>Try adjusting your filters or check your data source.</p>
+                        <p>Try adjusting your filters or check back later for more content.</p>
                     </div>
                 `;
                 return;
@@ -1495,7 +1701,15 @@
 
             const boardLabels = { cbse: 'CBSE', icse: 'ICSE', state: 'State Board', jee: 'JEE', neet: 'NEET' };
             const subjectLabels = { math: 'Mathematics', physics: 'Physics', chemistry: 'Chemistry', biology: 'Biology', english: 'English', computers: 'Computer Science' };
-            const channelLabels = { vedantu: 'Vedantu', physicswallah: 'Physics Wallah', byjus: "BYJU'S", unacademy: 'Unacademy', magnetbrains: 'Magnet Brains', learnohub: 'Learnohub', khanacademy: 'Khan Academy' };
+            const channelLabels = { 
+                vedantu: 'Vedantu', 
+                physicswallah: 'Physics Wallah', 
+                byjus: "BYJU'S", 
+                unacademy: 'Unacademy', 
+                magnetbrains: 'Magnet Brains', 
+                learnohub: 'LearnoHub', 
+                khanacademy: 'Khan Academy' 
+            };
             const linkClasses = { youtube: 'youtube', video: 'youtube', pdf: 'pdf', document: 'pdf', notes: 'notes', sample: 'sample' };
 
             let html = '';
@@ -1520,6 +1734,7 @@
 
                 html += `
                     <div class="resource-card">
+                        <div class="resource-bottle">${getBottleSVG()}</div>
                         <span class="resource-glow-badge">✦ #${i + 1}</span>
                         <div class="resource-breadcrumb">
                             <span class="board-tag">${boardTag}</span>
@@ -1559,6 +1774,17 @@
             renderResources(filtered);
         }
 
+        // ===== RESET FILTERS =====
+        function resetFilters() {
+            document.getElementById('filterLanguage').value = 'all';
+            document.getElementById('filterClass').value = 'all';
+            document.getElementById('filterSubject').value = 'all';
+            document.getElementById('filterChannel').value = 'all';
+            document.getElementById('filterYear').value = 'all';
+            document.getElementById('filterChapter').value = '';
+            filterResources();
+        }
+
         // ====================================================================
         //  LOAD STRATEGIES
         // ====================================================================
@@ -1580,8 +1806,6 @@
                 console.log(`✅ Loaded ${allResources.length} resources from Google Sheets.`);
                 renderResources(allResources);
                 filterResources();
-                const status = container.querySelector('.status-message');
-                if (status) status.remove();
                 return true;
             } catch (err) {
                 console.warn('Google Sheets load failed:', err.message);
@@ -1602,8 +1826,6 @@
                 console.log(`✅ Loaded ${allResources.length} resources from local CSV.`);
                 renderResources(allResources);
                 filterResources();
-                const status = container.querySelector('.status-message');
-                if (status) status.remove();
                 return true;
             } catch (err) {
                 console.warn('Local CSV load failed:', err.message);
@@ -1627,11 +1849,11 @@
         }
 
         function loadFallbackData() {
-            const fallbackCSV = `
-language,channel,board,class,subject,chapter,title,year,link_type,link_label,link_url
-English,Physics Wallah,cbse,9,chemistry,Matter in Our Surroundings,Sample: Matter,2024-2025,youtube,Watch Now,https://www.youtube.com
-English,Magnet Brains,cbse,10,math,Trigonometry,Sample: Trigonometry,2024-2025,youtube,Watch Now,https://www.youtube.com
-            `.trim();
+            const fallbackCSV = `language,channel,board,class,subject,chapter,title,year,link_type,link_label,link_url
+English,Physics Wallah,cbse,9,chemistry,Matter in Our Surroundings,Matter in Our Surroundings,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
+English,Magnet Brains,cbse,10,math,Trigonometry,Trigonometry Basics,2024-2025,youtube,Watch on YouTube,https://www.youtube.com
+English,LearnoHub,cbse,11,physics,Motion,Motion and Force,2024-2025,youtube,Watch on YouTube,https://www.youtube.com`;
+            
             const parsed = parseCSV(fallbackCSV);
             if (parsed.length === 0) {
                 container.innerHTML = `<div class="status-message error" style="grid-column:1/-1;">Fallback data is empty.</div>`;
@@ -1640,8 +1862,6 @@ English,Magnet Brains,cbse,10,math,Trigonometry,Sample: Trigonometry,2024-2025,y
             allResources = parsed.map(normalizeResource);
             renderResources(allResources);
             filterResources();
-            const status = container.querySelector('.status-message');
-            if (status) status.remove();
         }
 
         // ====================================================================
@@ -1799,33 +2019,34 @@ English,Magnet Brains,cbse,10,math,Trigonometry,Sample: Trigonometry,2024-2025,y
             }
 
             // ===== CREATE OBJECTS =====
-            const cubes = Array.from({ length: 10 }, () => new Cube3D());
-            const particles = Array.from({ length: 150 }, () => new Particle());
+            const cubes = Array.from({ length: 12 }, () => new Cube3D());
+            const particles = Array.from({ length: 200 }, () => new Particle());
 
             // ===== ANIMATION LOOP =====
             function draw() {
                 time++;
                 ctx.clearRect(0, 0, W, H);
 
-                // Deep space gradient background
+                // Deep space gradient background with enhanced glow
                 const grad = ctx.createRadialGradient(W * 0.4, H * 0.3, 0, W * 0.5, H * 0.5, W * 0.9);
-                grad.addColorStop(0, '#0a1a3a');
+                grad.addColorStop(0, '#0f2a5e');
                 grad.addColorStop(0.4, '#050d25');
                 grad.addColorStop(0.7, '#030815');
                 grad.addColorStop(1, '#000205');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, W, H);
 
-                // Floating light orbs
-                for (let i = 0; i < 4; i++) {
-                    const bx = W * (0.15 + i * 0.25) + W * 0.1 * Math.sin(time * 0.0003 + i * 2);
-                    const by = H * 0.2 + H * 0.2 * Math.cos(time * 0.0002 + i * 1.5);
-                    const radius = 100 + 50 * Math.sin(time * 0.002 + i);
+                // Enhanced floating light orbs with pulsing glow
+                for (let i = 0; i < 5; i++) {
+                    const bx = W * (0.1 + i * 0.2) + W * 0.15 * Math.sin(time * 0.0002 + i * 2);
+                    const by = H * 0.25 + H * 0.25 * Math.cos(time * 0.00015 + i * 1.5);
+                    const radius = 120 + 70 * Math.sin(time * 0.0025 + i);
+                    const intensity = 0.08 + 0.04 * Math.sin(time * 0.005 + i * 0.5);
 
                     const orbGrad = ctx.createRadialGradient(bx, by, 0, bx, by, radius);
-                    orbGrad.addColorStop(0, `hsla(${200 + i * 20}, 80%, 70%, 0.06)`);
-                    orbGrad.addColorStop(0.5, `hsla(${200 + i * 20}, 70%, 50%, 0.03)`);
-                    orbGrad.addColorStop(1, `hsla(${200 + i * 20}, 60%, 30%, 0)`);
+                    orbGrad.addColorStop(0, `hsla(${210 + i * 15}, 85%, 75%, ${intensity})`);
+                    orbGrad.addColorStop(0.5, `hsla(${210 + i * 15}, 75%, 50%, ${intensity * 0.5})`);
+                    orbGrad.addColorStop(1, `hsla(${210 + i * 15}, 65%, 30%, 0)`);
 
                     ctx.beginPath();
                     ctx.arc(bx, by, radius, 0, Math.PI * 2);
@@ -1833,18 +2054,20 @@ English,Magnet Brains,cbse,10,math,Trigonometry,Sample: Trigonometry,2024-2025,y
                     ctx.fill();
                 }
 
-                // Animated grid
-                ctx.strokeStyle = 'rgba(74, 124, 247, 0.02)';
+                // Animated grid with wave effect
+                ctx.strokeStyle = 'rgba(74, 124, 247, 0.03)';
                 ctx.lineWidth = 0.5;
-                for (let i = 0; i < 30; i++) {
-                    const y = (i * (H / 30) + time * 0.2) % H;
+                for (let i = 0; i < 35; i++) {
+                    const offset = 8 * Math.sin(time * 0.002 + i * 0.1);
+                    const y = (i * (H / 35) + time * 0.15 + offset) % H;
                     ctx.beginPath();
                     ctx.moveTo(0, y);
                     ctx.lineTo(W, y);
                     ctx.stroke();
                 }
-                for (let i = 0; i < 20; i++) {
-                    const x = (i * (W / 20) + time * 0.15) % W;
+                for (let i = 0; i < 25; i++) {
+                    const offset = 8 * Math.cos(time * 0.002 + i * 0.1);
+                    const x = (i * (W / 25) + time * 0.12 + offset) % W;
                     ctx.beginPath();
                     ctx.moveTo(x, 0);
                     ctx.lineTo(x, H);
